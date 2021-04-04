@@ -452,6 +452,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton11.setText("View Assessments");
         jButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(204, 204, 204));
         jButton14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -579,11 +584,21 @@ public class MainMenu extends javax.swing.JFrame {
         jButton17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton17.setText("Add Student");
         jButton17.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setBackground(new java.awt.Color(204, 204, 204));
         jButton18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton18.setText("Update Student");
         jButton18.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(204, 204, 204));
         jButton19.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -927,6 +942,27 @@ public class MainMenu extends javax.swing.JFrame {
         deleteAssessment.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        ViewAssessment viewAssessment = new ViewAssessment();
+        viewAssessment.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        AddStudent addStudent = new AddStudent();
+        addStudent.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        UpdateStudent updateStudent = new UpdateStudent();
+        updateStudent.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
