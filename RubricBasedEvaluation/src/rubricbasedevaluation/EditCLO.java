@@ -110,7 +110,7 @@ public class EditCLO extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Step:1", jPanel8);
 
-        jPanel9.setBackground(new java.awt.Color(244, 242, 247));
+        jPanel9.setBackground(new java.awt.Color(242, 242, 247));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setText("Add CLO-");

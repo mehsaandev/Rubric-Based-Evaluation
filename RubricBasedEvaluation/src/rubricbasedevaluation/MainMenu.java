@@ -268,6 +268,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton8.setText("Delete Rubric");
         jButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel9.setText("Rubrics:");
@@ -288,8 +293,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton13.setBackground(new java.awt.Color(204, 204, 204));
         jButton13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton13.setText("Add Rubric");
+        jButton13.setText("Edit Rubric");
         jButton13.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(204, 204, 204));
         jButton9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -843,6 +853,20 @@ public class MainMenu extends javax.swing.JFrame {
         addRubric.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        EditRubric editRubric = new EditRubric();
+        editRubric.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        DeleteRubric deleteRubric = new DeleteRubric();
+        deleteRubric.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
