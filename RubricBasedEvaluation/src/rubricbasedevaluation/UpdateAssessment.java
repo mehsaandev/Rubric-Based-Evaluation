@@ -59,6 +59,8 @@ public class UpdateAssessment extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Assessment");
+        setResizable(false);
 
         jTabbedPane1.setBackground(new java.awt.Color(242, 242, 247));
         jTabbedPane1.setEnabled(false);
@@ -324,7 +326,7 @@ public class UpdateAssessment extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
         );
 
         pack();

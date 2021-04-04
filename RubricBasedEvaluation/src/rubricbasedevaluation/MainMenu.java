@@ -619,6 +619,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton21.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton21.setText("Evaluate Student");
         jButton21.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jLabel29.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel29.setText("Students Added: ");
@@ -717,21 +722,41 @@ public class MainMenu extends javax.swing.JFrame {
         jButton22.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton22.setText("View Assessment Based Result");
         jButton22.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
 
         jButton23.setBackground(new java.awt.Color(204, 204, 204));
         jButton23.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton23.setText("View CLO(s) Based Result");
         jButton23.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
 
         jButton24.setBackground(new java.awt.Color(204, 204, 204));
         jButton24.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton24.setText("Student Assessment Result");
         jButton24.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
 
         jButton25.setBackground(new java.awt.Color(204, 204, 204));
         jButton25.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton25.setText("Failure Report in Assessment");
         jButton25.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         jLabel38.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel38.setText("Reports:");
@@ -742,18 +767,33 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton26.setBackground(new java.awt.Color(204, 204, 204));
         jButton26.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton26.setText("View All Student");
+        jButton26.setText("Student CLO(s) Result");
         jButton26.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setBackground(new java.awt.Color(204, 204, 204));
         jButton27.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton27.setText("Failure Report in CLO(s)");
         jButton27.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
 
         jButton28.setBackground(new java.awt.Color(204, 204, 204));
         jButton28.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton28.setText("Overall Result Summary");
         jButton28.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -975,6 +1015,64 @@ public class MainMenu extends javax.swing.JFrame {
         deleteStudent.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        EvaluateStudent evaluation = new EvaluateStudent();
+        evaluation.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+        AssessmentBasedResult assessmentBasedResult = new AssessmentBasedResult();
+        assessmentBasedResult.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+        CLOBasedResult cloBasedResult = new CLOBasedResult();
+        cloBasedResult.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+        StudentAssessmentResult stdAssessmentResult = new StudentAssessmentResult();
+        stdAssessmentResult.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        StudentCLOResult stdCLOResult = new StudentCLOResult();
+        stdCLOResult.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        FailureReportAssessment failAssessment = new FailureReportAssessment();
+        failAssessment.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+        FailureReportCLO failCLO = new FailureReportCLO();
+        failCLO.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        OverallResultSummary summary = new OverallResultSummary();
+        summary.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton28ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -39,6 +39,8 @@ public class DeleteAssessment extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Delete Assessment");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(242, 242, 247));
 
