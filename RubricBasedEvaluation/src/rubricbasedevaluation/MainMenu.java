@@ -305,6 +305,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton9.setText("Set Rubric Levels");
         jButton9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel11.setText("Rubric Levels:");
@@ -437,6 +442,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton10.setText("Add Assessment");
         jButton10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setBackground(new java.awt.Color(204, 204, 204));
         jButton11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -447,6 +457,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton14.setText("Active Assessments");
         jButton14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setBackground(new java.awt.Color(204, 204, 204));
         jButton15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -867,6 +882,27 @@ public class MainMenu extends javax.swing.JFrame {
         deleteRubric.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        SetRubricLevel setRubricLevel = new SetRubricLevel();
+        setRubricLevel.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        AddAssessment addAssessment = new AddAssessment();
+        addAssessment.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        ActiveAssessments activeAssessments = new ActiveAssessments();
+        activeAssessments.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
