@@ -280,6 +280,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton12.setText("Add Rubric");
         jButton12.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setBackground(new java.awt.Color(204, 204, 204));
         jButton13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -831,6 +836,13 @@ public class MainMenu extends javax.swing.JFrame {
         deleteCLO.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        AddRubric addRubric = new AddRubric();
+        addRubric.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
