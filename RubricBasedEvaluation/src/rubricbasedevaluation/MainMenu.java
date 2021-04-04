@@ -258,6 +258,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton7.setText("Delete CLO");
         jButton7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setBackground(new java.awt.Color(204, 204, 204));
         jButton8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -819,6 +824,13 @@ public class MainMenu extends javax.swing.JFrame {
         editCLO.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        DeleteCLO deleteCLO = new DeleteCLO();
+        deleteCLO.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
