@@ -604,6 +604,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton19.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton19.setText("Delete Student");
         jButton19.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton20.setBackground(new java.awt.Color(204, 204, 204));
         jButton20.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -963,6 +968,13 @@ public class MainMenu extends javax.swing.JFrame {
         updateStudent.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        DeleteStudent deleteStudent = new DeleteStudent();
+        deleteStudent.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
      * @param args the command line arguments
