@@ -467,11 +467,21 @@ public class MainMenu extends javax.swing.JFrame {
         jButton15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton15.setText("Update Assessments");
         jButton15.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setBackground(new java.awt.Color(204, 204, 204));
         jButton16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton16.setText("Delete Assessments");
         jButton16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel19.setText("Manage Assessments");
@@ -903,6 +913,20 @@ public class MainMenu extends javax.swing.JFrame {
         activeAssessments.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        UpdateAssessment updateAssessment = new UpdateAssessment();
+        updateAssessment.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        DeleteAssessment deleteAssessment = new DeleteAssessment();
+        deleteAssessment.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments
