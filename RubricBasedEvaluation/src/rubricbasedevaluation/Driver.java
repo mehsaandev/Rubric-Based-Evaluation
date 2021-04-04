@@ -16,6 +16,7 @@ public class Driver {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
+        MainMenu  mainMenu = new MainMenu();
+        mainMenu.setVisible(true);    }
     
 }
