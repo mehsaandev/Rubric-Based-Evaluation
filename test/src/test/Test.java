@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rubricbasedevaluation;
+package test;
 
 /**
  *
- * @author Ehsaan
+ * @author Ahsan
  */
-public class Driver {
+public class Test {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        LoginForm  loginForm = new LoginForm();
-        loginForm.setVisible(true);    }
+        Bro bro1 = Bro.getInstance();
+        Bro bro2 = Bro.getInstance();
+    }
     
 }
