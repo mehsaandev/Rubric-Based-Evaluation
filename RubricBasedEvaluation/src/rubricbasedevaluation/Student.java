@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package rubricbasedevaluation;
-
+import java.util.ArrayList;
 /**
  *
  * @author Ehsaan
@@ -12,6 +12,7 @@ package rubricbasedevaluation;
 public class Student {
     
     private String regNumber;
+    private static ArrayList<Assessments> assessmentsList= new ArrayList<Assessments>();
     /** Set value of fRegistration Number
      * 
      * @param regNumber 
@@ -28,10 +29,5 @@ public class Student {
     {
         return this.regNumber;
     }
-    
-//    public boolean addStudent()
-//    {
-//        
-//    }
     
 }

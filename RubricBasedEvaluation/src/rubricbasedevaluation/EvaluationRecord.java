@@ -16,7 +16,8 @@ public class EvaluationRecord{
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList<Student> studentList = new ArrayList<Student>();
+         ArrayList<Student> studentList = new ArrayList<Student>();
+         ArrayList<CLO> clo = new ArrayList<CLO>();
         RegisterTeacher loginForm = new RegisterTeacher();
         loginForm.setVisible(true);
     }
