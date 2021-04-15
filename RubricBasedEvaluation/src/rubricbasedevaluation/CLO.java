@@ -60,12 +60,11 @@ public class CLO {
         return false;
     }
 
-    public boolean editRubric(Rubrics rubric) {
-        if (this.searchRubric(rubric) != -1) {
-            rubricsList.set(this.searchRubric(rubric),rubric);
-            return true;
-        }
-        return false;
+    public boolean editRubric(int index, Rubrics rubric) {
+
+        rubricsList.set(index, rubric);
+        return true;
+
     }
 
     public int searchRubric(Rubrics rubric) {

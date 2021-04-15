@@ -5,6 +5,7 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,13 @@ public class AddRubric extends javax.swing.JFrame {
      */
     public AddRubric() {
         initComponents();
+        DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            listCLO.addElement("CLO-" + (i + 1));
+        }
+        jComboBox1.setModel(listCLO);
+        jComboBox1.getModel().setSelectedItem("Select CLO");
     }
 
     /**
@@ -48,7 +56,6 @@ public class AddRubric extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Add Rubric");
-        setPreferredSize(new java.awt.Dimension(724, 404));
         setResizable(false);
 
         jTabbedPane1.setEnabled(false);
@@ -143,6 +150,11 @@ public class AddRubric extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
@@ -231,9 +243,50 @@ public class AddRubric extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        boolean flag = (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) >= '0') && (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) <= '9');
 
+        if (flag == true) {
+            for (int i = 0; i < jTextField1.getText().length(); i++) {
+                if (jTextField1.getText().charAt(i) >= '0' && jTextField1.getText().charAt(i) <= '9') {
+                    flag = true;
+                } else {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag == true) {
+                jTabbedPane1.setSelectedIndex(1);
+                DefaultComboBoxModel<String> listRubric = new DefaultComboBoxModel<String>();
+                for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++) {
+                    listRubric.addElement((i + 1) + "");
+                }
+                jComboBox2.setModel(listRubric);
+                jComboBox2.getModel().setSelectedItem("No.");
+//               setRubricNames();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Number");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "CLO not selected");
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+    CLO clo;
+
+    private void setRubricNames() {
+        clo = new CLO();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        clo = record.getCLOList().get(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) - 1);
+        Rubrics rubric = new Rubrics();
+        for (int i = 0; i < Integer.parseInt(jTextField1.getText()); i++) {
+            rubric.setName(null);
+            clo.addRubric(rubric);
+        }
+
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);
@@ -241,11 +294,21 @@ public class AddRubric extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Rubrics have been Added Successfully..." );
-         MainMenu mainMenu = new MainMenu();
+        JOptionPane.showMessageDialog(null, "Rubrics have been Added Successfully...");
+        MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        // TODO add your handling code here:
+        Rubrics rubric = new Rubrics();
+        rubric.setName(jTextField2.getText());
+        if (clo.editRubric(jComboBox2.getSelectedIndex(), rubric) == true) {
+            jTextField2.setText(clo.getRubricsList().get(jComboBox2.getSelectedIndex()).getName());
+        }
+
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     /**
      * @param args the command line arguments
