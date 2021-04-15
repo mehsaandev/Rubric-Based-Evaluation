@@ -5,6 +5,9 @@
  */
 package rubricbasedevaluation;
 
+import java.util.ArrayList;
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
@@ -19,6 +22,13 @@ public class EditCLO extends javax.swing.JFrame {
      */
     public EditCLO() {
         initComponents();
+        DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            listCLO.addElement("CLO-" + (i + 1));
+        }
+        jComboBox8.setModel(listCLO);
+        jComboBox8.getModel().setSelectedItem("Select CLO");
     }
 
     /**
@@ -221,16 +231,33 @@ public class EditCLO extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "CLO has been Updated Successfully");
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        this.setVisible(false);
-        
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        CLO clo = new CLO();
+        clo.setName(jTextField1.getText());
+        clo.setTotalMarks(Integer.parseInt(jTextField2.getText()));
+        int index = Integer.parseInt(jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) + "");
+        if (record.editCLO(index - 1, clo) == true) {
+            JOptionPane.showMessageDialog(null, "CLO has been Updated Successfully");
+            record.setCLOList(record.getCLOList());
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
+
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        if (jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) >= '0' && jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) <= '9') {
+            int index = Integer.parseInt(jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) + "");
+            jTextField1.setText(record.getCLOList().get(index - 1).getName());
+            jTextField2.setText("" + record.getCLOList().get(index - 1).getTotalMarks());
+            jTabbedPane1.setSelectedIndex(1);
+        } else {
+            JOptionPane.showMessageDialog(null, "CLO not added");
+        }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed

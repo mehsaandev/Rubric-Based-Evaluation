@@ -150,11 +150,14 @@ public class AddCLO extends javax.swing.JFrame {
         clo.setTotalMarks(Integer.parseInt(jTextField2.getText()));
         if (evaluationRecord.addCLO(clo) == true) {
             JOptionPane.showMessageDialog(null, "CLO Has Been Added Successfully");
-            System.out.print(evaluationRecord.getCLOList().get(0).getName());
             evaluationRecord.setCLOList(evaluationRecord.getCLOList());
             MainMenu mainMenu = new MainMenu();
             mainMenu.setVisible(true);
             this.setVisible(false);
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "CLO is already Added...");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

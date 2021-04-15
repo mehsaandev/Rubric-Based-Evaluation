@@ -29,30 +29,28 @@ public class EvaluationRecord {
     public ArrayList<Student> getStudentList() {
         return this.studentList;
     }
+
     //////////////////////////////////////////////////////////////// CLO list functions
-    public void setCLOList( ArrayList<CLO> cloList)
-    {
+    public void setCLOList(ArrayList<CLO> cloList) {
         this.cloList = cloList;
     }
-    public  ArrayList<CLO> getCLOList()
-    {
+
+    public ArrayList<CLO> getCLOList() {
         return this.cloList;
     }
+
     public boolean addCLO(CLO clo) {
         if (searchCLO(clo) == -1) {
-            System.out.println("Entered if of CLO");
             this.cloList.add(clo);
             return true;
         }
         return false;
     }
 
-    public boolean editCLO(CLO clo) {
-        if (searchCLO(clo) != -1) {
-            this.cloList.set(searchCLO(clo), clo);
-            return true;
-        }
-        return false;
+    public boolean editCLO(int index, CLO clo) {
+
+        this.cloList.set(index, clo);
+        return true;
     }
 
     public boolean deleteCLO(CLO clo) {

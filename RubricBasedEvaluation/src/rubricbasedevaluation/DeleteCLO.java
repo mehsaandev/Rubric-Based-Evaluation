@@ -5,6 +5,7 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,13 @@ public class DeleteCLO extends javax.swing.JFrame {
      */
     public DeleteCLO() {
         initComponents();
+        DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            listCLO.addElement("CLO-" + (i + 1));
+        }
+        jComboBox1.setModel(listCLO);
+        jComboBox1.getModel().setSelectedItem("Select CLO");
     }
 
     /**
@@ -122,10 +130,27 @@ public class DeleteCLO extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "CLO has been removed Successfully");
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+
+        if (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) >= '0' && jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) <= '9') {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            CLO clo = new CLO();
+            int index = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) + "");
+            clo.setName(record.getCLOList().get(index - 1).getName());
+            index = record.searchCLO(clo);
+            clo = record.getCLOList().get(index);
+            if (record.deleteCLO(clo) == true) {
+                JOptionPane.showMessageDialog(null, "CLO has been removed Successfully");
+                record.setCLOList(record.getCLOList());
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.setVisible(true);
+                this.setVisible(false);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Select CLO!!!");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
