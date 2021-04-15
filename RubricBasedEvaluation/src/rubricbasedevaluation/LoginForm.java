@@ -51,11 +51,11 @@ public class LoginForm extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Password..");
+        jTextField1.setText("2611Ysolda!");
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("Username...");
+        jTextField2.setText("ehsaan2611");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

@@ -91,7 +91,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("First Name...");
+        jTextField1.setText("Muhammad");
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -100,7 +100,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("Email...");
+        jTextField2.setText("ehsaan2611@gmail.com");
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField2KeyReleased(evt);
@@ -109,7 +109,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("Last Name...");
+        jTextField3.setText("Ehsaan");
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
@@ -118,7 +118,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setText("Username...");
+        jTextField4.setText("ehsaan2611");
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField4KeyReleased(evt);
@@ -127,7 +127,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField5.setText("CNIC...");
+        jTextField5.setText("3520258495935");
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
@@ -136,7 +136,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField6.setText("Password...");
+        jTextField6.setText("2611Ysolda!");
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField6KeyReleased(evt);
@@ -145,7 +145,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
 
         jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField7.setText("Confirm Password...");
+        jTextField7.setText("2611Ysolda!");
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField7KeyReleased(evt);
@@ -182,8 +182,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jLabel9.setIcon(jLabel14.getIcon());
-
-        jLabel13.setIcon(new javax.swing.ImageIcon("E:\\UET\\2nd Semester\\OOP\\Mid Term Project\\icons8_cancel_48px.png")); // NOI18N
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rubricbasedevaluation/icons8_cancel_48px.png"))); // NOI18N
 

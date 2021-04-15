@@ -41,7 +41,6 @@ public class AddCLO extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add CLO");
-        setPreferredSize(new java.awt.Dimension(724, 404));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(242, 242, 247));
@@ -53,9 +52,9 @@ public class AddCLO extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("1");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Name of CLO:");
@@ -122,7 +121,7 @@ public class AddCLO extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,10 +144,19 @@ public class AddCLO extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"CLO Has Been Added Successfully");
-         MainMenu mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        EvaluationRecord evaluationRecord = EvaluationRecord.getInstance();
+        CLO clo = new CLO();
+        clo.setName(jTextField1.getText());
+        clo.setTotalMarks(Integer.parseInt(jTextField2.getText()));
+        if (evaluationRecord.addCLO(clo) == true) {
+            JOptionPane.showMessageDialog(null, "CLO Has Been Added Successfully");
+            System.out.print(evaluationRecord.getCLOList().get(0).getName());
+            evaluationRecord.setCLOList(evaluationRecord.getCLOList());
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

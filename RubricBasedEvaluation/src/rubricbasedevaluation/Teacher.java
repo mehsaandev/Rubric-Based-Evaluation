@@ -55,10 +55,8 @@ public class Teacher extends SystemBody {
     }
 
     public boolean checkLogin(String username, String password) {
-        System.out.println(this.username + "  "+ username);
-        System.out.println(this.password + "  "+ password);
         if ((this.username.equals(username) || this.email.equals(username)) && (this.password.equals(password))) {
-            System.out.println("Entered in if");
+            
             return true;
         }
         return false;
