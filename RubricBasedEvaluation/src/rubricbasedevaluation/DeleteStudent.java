@@ -126,10 +126,26 @@ public class DeleteStudent extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Student has been removed Successfully");
-         MainMenu mainMenu = new MainMenu(2);
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        Student student = new Student();
+        student.setCNIC(jTextField1.getText());
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter CNIC");
+        } else {
+            if (record.searchStudent(student) != -1) {
+                student = record.getStudentList().get(record.searchStudent(student));
+                record.getStudentList().remove(student);
+                JOptionPane.showMessageDialog(null, "Student has been removed Successfully");
+                MainMenu mainMenu = new MainMenu(2);
+                record.setStudentList(record.getStudentList());
+                mainMenu.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Credentials");
+            }
+
+        }
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

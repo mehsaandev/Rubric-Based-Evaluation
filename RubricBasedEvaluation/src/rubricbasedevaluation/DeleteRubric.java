@@ -26,7 +26,6 @@ public class DeleteRubric extends javax.swing.JFrame {
             listCLO.addElement("CLO-" + (i + 1));
         }
         jComboBox8.setModel(listCLO);
-
         jComboBox8.getModel().setSelectedItem("Select CLO");
     }
 

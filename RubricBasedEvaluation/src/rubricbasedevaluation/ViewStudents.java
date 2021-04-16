@@ -5,6 +5,10 @@
  */
 package rubricbasedevaluation;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -16,6 +20,27 @@ public class ViewStudents extends javax.swing.JFrame {
      */
     public ViewStudents() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+
+        model.addColumn("Index");
+        model.addColumn("Student ID");
+        model.addColumn("Student Name");
+        model.addColumn("Student CNIC");
+        model.addColumn("Student Email");
+        jTable1.setForeground(Color.BLACK);
+        model.setNumRows(record.getStudentList().size());
+        for (int i = 0; i < record.getStudentList().size(); i++) {
+            String[] rowTable = new String[5];
+            model.setValueAt((i + 1), i, 0);
+            model.setValueAt(record.getStudentList().get(i).getRegNumber(), i, 1);
+            String[] splitName = record.getStudentList().get(i).getName().split(";");
+            model.setValueAt(splitName[0] + " " + splitName[1], i, 2);
+            model.setValueAt(record.getStudentList().get(i).getCNIC(), i, 3);
+            model.setValueAt(record.getStudentList().get(i).getEmail(), i, 4);
+        }
+        jTable1.setModel(model);
+
     }
 
     /**
@@ -46,14 +71,14 @@ public class ViewStudents extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Index", "Student ID", "Student Name", "Student CNIC", "Student Email", "Title Student Phone Number"
+                "Index", "Student ID", "Student Name", "Student CNIC", "Student Email"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

@@ -120,7 +120,7 @@ public class UpdateStudent extends javax.swing.JFrame {
         jLabel3.setText("First Name:");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel4.setText("First Name:");
+        jLabel4.setText("Last Name:");
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
@@ -232,10 +232,26 @@ public class UpdateStudent extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Student data is Updated Successfully");
-        MainMenu mainMenu = new MainMenu(2);
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        Student student = new Student();
+        student.setCNIC(jTextField1.getText());
+        int index = record.searchStudent(student);
+        student.setCNIC(jTextField5.getText());
+        student.setEmail(jTextField3.getText());
+        student.setName(jTextField6.getText() + ";" + jTextField2.getText());
+        student.setRegNumber(record.getStudentList().get(index).getRegNumber());
+
+        if (Validators.validateCNIC(jTextField5.getText()) == true && Validators.validateEmail(jTextField3.getText()) == true && Validators.validateName(jTextField6.getText() + " " + jTextField2.getText())) {
+            record.editStudent(index, student);
+            JOptionPane.showMessageDialog(null, "Student data is Updated Successfully");
+            MainMenu mainMenu = new MainMenu(2);
+            record.setStudentList(record.getStudentList());
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        } else {
+             JOptionPane.showMessageDialog(null, "Invalid Data");
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -252,11 +268,14 @@ public class UpdateStudent extends javax.swing.JFrame {
             Student student = new Student();
             student.setCNIC(jTextField1.getText());
             if (record.searchStudent(student) != -1) {
+                jTextField3.setText(record.getStudentList().get(record.searchStudent(student)).getEmail());
+                jTextField5.setText(record.getStudentList().get(record.searchStudent(student)).getCNIC());
+                String[] splitName = record.getStudentList().get(record.searchStudent(student)).getName().split(";");
+                jTextField6.setText(splitName[0]);
+                jTextField2.setText(splitName[1]);
                 jTabbedPane1.setSelectedIndex(1);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Student not Found");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Credentials");
             }
         }
     }//GEN-LAST:event_jButton6ActionPerformed

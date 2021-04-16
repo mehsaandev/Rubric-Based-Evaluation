@@ -181,27 +181,31 @@ public class AddStudent extends javax.swing.JFrame {
         mainMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-  static int regNumber = 1;
+    static int regNumber = 1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         EvaluationRecord record = EvaluationRecord.getInstance();
         Student student = new Student();
-        student.setName(jTextField1.getText() + " " + jTextField2.getText());
+        student.setName(jTextField1.getText() + ";" + jTextField2.getText());
         student.setCNIC(jTextField5.getText());
         student.setEmail(jTextField3.getText());
-        student.setRegNumber("Std-"+regNumber);
-        if (record.addStudent(student) == true) {
-            JOptionPane.showMessageDialog(null, "Student is Added Successfully and His/Her ID is: Std-"+regNumber);
-            regNumber++;
-            MainMenu mainMenu = new MainMenu(2);
-            mainMenu.setVisible(true);
-            this.setVisible(false);
+        student.setRegNumber("Std-" + regNumber);
+        if (Validators.validateCNIC(jTextField5.getText()) && Validators.validateEmail(jTextField3.getText()) && Validators.validateName(jTextField1.getText() + " " + jTextField2.getText())) {
+            if (record.addStudent(student) == true) {
+                JOptionPane.showMessageDialog(null, "Student is Added Successfully and His/Her ID is: Std-" + regNumber);
+                regNumber++;
+                MainMenu mainMenu = new MainMenu(2);
+                record.setStudentList(record.getStudentList());
+                mainMenu.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Student of same email or CNIC is already Entered");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data");
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Student of same email or CNIC is already Entered");
-        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

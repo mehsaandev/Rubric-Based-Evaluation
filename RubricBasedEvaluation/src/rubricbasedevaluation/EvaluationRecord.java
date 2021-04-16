@@ -105,12 +105,10 @@ public class EvaluationRecord {
         return false;
     }
 
-    public boolean editStudent(Student student) {
-        if (searchStudent(student) != -1) {
-            this.studentList.set(searchStudent(student), student);
-            return true;
-        }
-        return false;
+    public boolean editStudent(int index, Student student) {
+
+        this.studentList.set(index, student);
+        return true;
     }
 
     public static EvaluationRecord getInstance() {
