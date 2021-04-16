@@ -5,6 +5,7 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,13 @@ public class SetRubricLevel extends javax.swing.JFrame {
      */
     public SetRubricLevel() {
         initComponents();
+
+        DefaultComboBoxModel<String> listRubricLevels = new DefaultComboBoxModel<String>();
+        for (int i = 1; i <= 10; i++) {
+            listRubricLevels.addElement("" + i);
+        }
+        jComboBox1.setModel(listRubricLevels);
+        jComboBox1.getModel().setSelectedItem("Select Rubric Levels");
     }
 
     /**
@@ -35,6 +43,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField1 = new javax.swing.JTextField();
@@ -73,8 +82,8 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("How Many Levels You Want to Have?");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Rubric Level" }));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Cancel");
@@ -92,32 +101,41 @@ public class SetRubricLevel extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel3.setText("(Max: 10)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(163, 163, 163)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(259, 259, 259))
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(224, 224, 224))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(107, 107, 107))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(115, 115, 115)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(42, 42, 42)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -132,9 +150,11 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox1.setSelected(true);
         jCheckBox1.setEnabled(false);
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField1.setText("Level 1");
 
+        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField2.setText("Level 2");
 
@@ -146,9 +166,11 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox12.setSelected(true);
         jCheckBox12.setEnabled(false);
 
+        jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField3.setText("Level 3");
 
+        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField4.setText("Level 4");
 
@@ -160,9 +182,11 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox14.setSelected(true);
         jCheckBox14.setEnabled(false);
 
+        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField5.setText("Level 5");
 
+        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField6.setText("Level 6");
 
@@ -170,6 +194,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox15.setSelected(true);
         jCheckBox15.setEnabled(false);
 
+        jTextField7.setEditable(false);
         jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField7.setText("Level 7");
 
@@ -177,6 +202,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox16.setSelected(true);
         jCheckBox16.setEnabled(false);
 
+        jTextField8.setEditable(false);
         jTextField8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField8.setText("Level 8");
 
@@ -184,6 +210,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox17.setSelected(true);
         jCheckBox17.setEnabled(false);
 
+        jTextField9.setEditable(false);
         jTextField9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField9.setText("Level 9");
 
@@ -191,6 +218,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
         jCheckBox18.setSelected(true);
         jCheckBox18.setEnabled(false);
 
+        jTextField12.setEditable(false);
         jTextField12.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField12.setText("Level 10");
 
@@ -357,7 +385,130 @@ public class SetRubricLevel extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
+        int rubricLevel = -1;
+        try {
+            rubricLevel = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            rubricLevel = -1;
+        }
+        if (rubricLevel == -1) {
+            JOptionPane.showMessageDialog(null, "Select Rubric Levels");
+        } else {
+            if (rubricLevel == 1) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(false);
+                jTextField3.setEditable(false);
+                jTextField4.setEditable(false);
+                jTextField5.setEditable(false);
+                jTextField6.setEditable(false);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 2) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(false);
+                jTextField4.setEditable(false);
+                jTextField5.setEditable(false);
+                jTextField6.setEditable(false);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+
+            } else if (rubricLevel == 3) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(false);
+                jTextField5.setEditable(false);
+                jTextField6.setEditable(false);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 4) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(false);
+                jTextField6.setEditable(false);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 5) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(false);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 6) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(true);
+                jTextField7.setEditable(false);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 7) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(true);
+                jTextField7.setEditable(true);
+                jTextField8.setEditable(false);
+                jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 8) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(true);
+                jTextField7.setEditable(true);
+                jTextField8.setEditable(true);
+                 jTextField9.setEditable(false);
+                jTextField12.setEditable(false);
+            } else if (rubricLevel == 9) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(true);
+                jTextField7.setEditable(true);
+                jTextField8.setEditable(true);
+                jTextField9.setEditable(true);
+                 jTextField12.setEditable(false);
+            } else if (rubricLevel == 10) {
+                jTextField1.setEditable(true);
+                jTextField2.setEditable(true);
+                jTextField3.setEditable(true);
+                jTextField4.setEditable(true);
+                jTextField5.setEditable(true);
+                jTextField6.setEditable(true);
+                jTextField7.setEditable(true);
+                jTextField8.setEditable(true);
+                jTextField9.setEditable(true);
+                jTextField12.setEditable(true);
+            }
+            jTabbedPane1.setSelectedIndex(1);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -426,6 +577,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;

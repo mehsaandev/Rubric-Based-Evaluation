@@ -70,7 +70,7 @@ public class CLO {
     public int searchRubric(Rubrics rubric) {
         int flag = -1;
         for (int i = 0; i < this.rubricsList.size(); i++) {
-            if (this.rubricsList.get(i).equals(rubric)) {
+            if (this.rubricsList.get(i).getName().equals(rubric.getName())) {
                 flag = i;
                 break;
             }

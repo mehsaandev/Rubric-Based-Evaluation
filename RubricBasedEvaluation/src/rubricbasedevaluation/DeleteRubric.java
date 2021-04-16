@@ -5,6 +5,7 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,15 @@ public class DeleteRubric extends javax.swing.JFrame {
      */
     public DeleteRubric() {
         initComponents();
+        jTextField1.setEditable(false);
+        DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            listCLO.addElement("CLO-" + (i + 1));
+        }
+        jComboBox8.setModel(listCLO);
+
+        jComboBox8.getModel().setSelectedItem("Select CLO");
     }
 
     /**
@@ -46,7 +56,6 @@ public class DeleteRubric extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Delete Rubrics");
-        setPreferredSize(new java.awt.Dimension(724, 404));
         setResizable(false);
 
         jTabbedPane1.setEnabled(false);
@@ -58,8 +67,9 @@ public class DeleteRubric extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel8.setText("Select CLO:");
 
-        jComboBox8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CLO-1", "CLO-2", "CLO-3", "CLO-3" }));
+        jComboBox8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select CLO" }));
+        jComboBox8.setToolTipText("");
 
         jButton15.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton15.setText("Cancel");
@@ -91,9 +101,9 @@ public class DeleteRubric extends javax.swing.JFrame {
                         .addGap(189, 189, 189))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(273, 273, 273))))
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(220, 220, 220))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +112,7 @@ public class DeleteRubric extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,10 +132,15 @@ public class DeleteRubric extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel3.setText("Select Rubric to Delete:");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rubric-1", "Rubric-2", "Rubric-3", "Rubric-4" }));
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Rubric" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
         jTextField1.setText("Rubric Name will Show here after selecting");
 
@@ -161,16 +176,15 @@ public class DeleteRubric extends javax.swing.JFrame {
                             .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(99, 99, 99)
                             .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(197, 197, 197)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(188, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(120, 120, 120)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +199,7 @@ public class DeleteRubric extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,21 +231,72 @@ public class DeleteRubric extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
+        boolean flag = (jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) >= '0') && (jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) <= '9');
+        if (flag == true) {
+            int index = (Integer.parseInt(jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) + ""));
+            DefaultComboBoxModel<String> listRubrics = new DefaultComboBoxModel<>();
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            for (int i = 0; i < record.getCLOList().get(index - 1).getRubricsList().size(); i++) {
+
+                listRubrics.addElement("" + (i + 1));
+
+            }
+            jComboBox1.setModel(listRubrics);
+            jComboBox1.getModel().setSelectedItem("Select Rubric");
+            jTabbedPane1.setSelectedIndex(1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Select CLO");
+        }
+
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Rubric has been Removed Successfully");
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        int indexCLO = (Integer.parseInt(jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) + ""));
+        int indexRubric = -1;
+        try {
+            indexRubric = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            indexRubric = -1;
+        }
+        if (indexRubric == -1) {
+            JOptionPane.showMessageDialog(null, "Rubric has been Removed Successfully");
+        } else {
+            Rubrics rubric = new Rubrics();
+            rubric = record.getCLOList().get(indexCLO-1).getRubricsList().get(indexRubric-1);
+            record.getCLOList().get(indexCLO-1).getRubricsList().remove(rubric);
+            JOptionPane.showMessageDialog(null, "Rubric has been Removed Successfully");
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        int indexCLO = (Integer.parseInt(jComboBox8.getModel().getSelectedItem().toString().charAt(jComboBox8.getModel().getSelectedItem().toString().length() - 1) + ""));
+        int indexRubric = -1;
+        try {
+            indexRubric = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            indexRubric = -1;
+        }
+        if (indexRubric != -1) {
+            jTextField1.setText(record.getCLOList().get(indexCLO - 1).getRubricsList().get(indexRubric - 1).getName());
+        } else {
+            jTextField1.setText("Rubric Name will Show here after selecting");
+        }
+
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments

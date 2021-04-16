@@ -16,7 +16,7 @@ public class EvaluationRecord {
     private ArrayList<Student> studentList = new ArrayList<Student>();
     private ArrayList<CLO> cloList = new ArrayList<CLO>();
     private static EvaluationRecord evaluationRecord = null;
-
+    private RubricLevels rubricLevel= new RubricLevels();
     private EvaluationRecord() {
 
     }

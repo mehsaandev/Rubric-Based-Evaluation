@@ -19,13 +19,35 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        jLabel16.setText(record.getCLOList().size()+"");
+        int count =0;
+        for(int i =0;i<record.getCLOList().size();i++)
+        {
+            if(record.getCLOList().get(i).getRubricsList().size()>0)
+            {
+                count++;
+            }
+        }
+        jLabel14.setText(count+"");
     }
-    public MainMenu(int indexOfPane)
-    {
+
+    public MainMenu(int indexOfPane) {
         initComponents();
-       jTabbedPane1.setSelectedIndex(indexOfPane);
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        jLabel16.setText(record.getCLOList().size()+"");
+        int count =0;
+        for(int i =0;i<record.getCLOList().size();i++)
+        {
+            if(record.getCLOList().get(i).getRubricsList().size()>0)
+            {
+                count++;
+            }
+        }
+        jLabel14.setText(count+"");
+        jTabbedPane1.setSelectedIndex(indexOfPane);
     }
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -923,11 +945,10 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         AddCLO addCLO = new AddCLO();
-         this.setVisible(false);
+        this.setVisible(false);
         addCLO.setVisible(true);
-       
-        
-        
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1061,7 +1082,7 @@ public class MainMenu extends javax.swing.JFrame {
         StudentCLOResult stdCLOResult = new StudentCLOResult();
         stdCLOResult.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
@@ -1083,7 +1104,7 @@ public class MainMenu extends javax.swing.JFrame {
         OverallResultSummary summary = new OverallResultSummary();
         summary.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed

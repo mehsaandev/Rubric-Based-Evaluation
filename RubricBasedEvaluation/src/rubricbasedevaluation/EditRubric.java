@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,14 @@ public class EditRubric extends javax.swing.JFrame {
      */
     public EditRubric() {
         initComponents();
+        DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            listCLO.addElement("CLO-" + (i + 1));
+        }
+        jComboBox1.setModel(listCLO);
+
+        jComboBox1.getModel().setSelectedItem("Select CLO");
     }
 
     /**
@@ -56,8 +66,8 @@ public class EditRubric extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("Select CLO:");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CLO-1", "CLO-2", "CLO-3", "CLO-4" }));
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select CLO" }));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setText("Cencel");
@@ -89,13 +99,13 @@ public class EditRubric extends javax.swing.JFrame {
                 .addGap(216, 216, 216)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -117,6 +127,11 @@ public class EditRubric extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
@@ -204,7 +219,24 @@ public class EditRubric extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
+        boolean flag = (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) >= '0') && (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) <= '9');
+        if (flag == true) {
+            int index = (Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) + ""));
+            DefaultComboBoxModel<String> listRubrics = new DefaultComboBoxModel<String>();
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            for (int i = 0; i < record.getCLOList().get(index - 1).getRubricsList().size(); i++) {
+
+                listRubrics.addElement((i + 1) + "");
+
+            }
+            jComboBox2.setModel(listRubrics);
+            jComboBox2.getModel().setSelectedItem("No.");
+            jTabbedPane1.setSelectedIndex(1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Select CLO");
+        }
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -214,11 +246,48 @@ public class EditRubric extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Rubric is Updated Successfully");
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        int indexRubric = -1;
+        int indexCLO = (Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) + ""));
+
+        try {
+            indexRubric = Integer.parseInt(jComboBox2.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            indexRubric = -1;
+        }
+        if (indexRubric == -1) {
+            JOptionPane.showMessageDialog(null, "Select Rubric");
+        } else if (jTextField2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter Name of Else");
+        } else {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            Rubrics rubric = new Rubrics();
+            rubric.setName(jTextField2.getText());
+            record.getCLOList().get(indexCLO - 1).getRubricsList().set(indexRubric - 1, rubric);
+            JOptionPane.showMessageDialog(null, "Rubric is Updated Successfully");
+            record.setCLOList(record.getCLOList());
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        // TODO add your handling code here:
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        int indexCLO = (Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) + ""));
+        int indexRubric = -1;
+        try {
+            indexRubric = Integer.parseInt(jComboBox2.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            indexRubric = -1;
+        }
+        if (indexRubric != -1) {
+            jTextField2.setText(record.getCLOList().get(indexCLO - 1).getRubricsList().get(indexRubric - 1).getName());
+        } else {
+            jTextField2.setText("Select Rubric");
+        }
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     /**
      * @param args the command line arguments
