@@ -7,6 +7,7 @@ package rubricbasedevaluation;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
@@ -385,13 +386,13 @@ public class SetRubricLevel extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int rubricLevel = -1;
+        int rubricLevel = 0;
         try {
             rubricLevel = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
         } catch (Exception ex) {
-            rubricLevel = -1;
+            rubricLevel = 0;
         }
-        if (rubricLevel == -1) {
+        if (rubricLevel == 0) {
             JOptionPane.showMessageDialog(null, "Select Rubric Levels");
         } else {
             if (rubricLevel == 1) {
@@ -481,7 +482,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
                 jTextField6.setEditable(true);
                 jTextField7.setEditable(true);
                 jTextField8.setEditable(true);
-                 jTextField9.setEditable(false);
+                jTextField9.setEditable(false);
                 jTextField12.setEditable(false);
             } else if (rubricLevel == 9) {
                 jTextField1.setEditable(true);
@@ -493,7 +494,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
                 jTextField7.setEditable(true);
                 jTextField8.setEditable(true);
                 jTextField9.setEditable(true);
-                 jTextField12.setEditable(false);
+                jTextField12.setEditable(false);
             } else if (rubricLevel == 10) {
                 jTextField1.setEditable(true);
                 jTextField2.setEditable(true);
@@ -518,7 +519,86 @@ public class SetRubricLevel extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        
+        int rubricLevel = 0;
+        try {
+            rubricLevel = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
+        } catch (Exception ex) {
+            rubricLevel = 0;
+        }
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        record.getRubricLevel().setRubricLevels(rubricLevel);
+        record.getRubricLevel().setLevelList(new ArrayList<String>());
+        if (rubricLevel == 1) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+        } else if (rubricLevel == 2) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+        } else if (rubricLevel == 3) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+        } else if (rubricLevel == 4) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+        } else if (rubricLevel == 5) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+        } else if (rubricLevel == 6) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField6.getText());
+        } else if (rubricLevel == 7) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField6.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField7.getText());
+        } else if (rubricLevel == 8) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField6.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField7.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField8.getText());
+        } else if (rubricLevel == 9) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField6.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField7.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField8.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField9.getText());
+        } else if (rubricLevel == 10) {
+            record.getRubricLevel().addLRubricLevelList(jTextField1.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField2.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField3.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField4.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField5.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField6.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField7.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField8.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField9.getText());
+            record.getRubricLevel().addLRubricLevelList(jTextField12.getText());
+
+        }
         JOptionPane.showMessageDialog(null, "Rubric Levels has been set Successfully");
+        record.setRubricLevel(record.getRubricLevel());
+        System.out.print(record.getRubricLevel().getRubricLevels());
         MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
         this.setVisible(false);

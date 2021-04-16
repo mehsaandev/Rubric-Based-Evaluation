@@ -16,9 +16,18 @@ public class EvaluationRecord {
     private ArrayList<Student> studentList = new ArrayList<Student>();
     private ArrayList<CLO> cloList = new ArrayList<CLO>();
     private static EvaluationRecord evaluationRecord = null;
-    private RubricLevels rubricLevel= new RubricLevels();
-    private EvaluationRecord() {
+    private RubricLevels rubricLevel = new RubricLevels();
 
+    private EvaluationRecord() {
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    public RubricLevels getRubricLevel() {
+        return this.rubricLevel;
+    }
+
+    public void setRubricLevel(RubricLevels rubricLevel) {
+        this.rubricLevel = rubricLevel;
     }
 
     /////////////////////////////////////////////////////////// Student List Functions
@@ -73,7 +82,7 @@ public class EvaluationRecord {
     //////////////////////////////////////////////////////////////////////// Stduent List Functions
     public int searchStudent(Student student) {
         for (int i = 0; i < this.studentList.size(); i++) {
-            if (this.studentList.get(i).equals(student)) {
+            if (this.studentList.get(i).cnic.equals(student.getCNIC()) || this.studentList.get(i).getEmail().equals(student.getEmail())) {
                 return i;
             }
         }

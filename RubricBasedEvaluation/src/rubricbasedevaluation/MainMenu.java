@@ -20,34 +20,34 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         EvaluationRecord record = EvaluationRecord.getInstance();
-        jLabel16.setText(record.getCLOList().size()+"");
-        int count =0;
-        for(int i =0;i<record.getCLOList().size();i++)
-        {
-            if(record.getCLOList().get(i).getRubricsList().size()>0)
-            {
+        jLabel16.setText(record.getCLOList().size() + "");
+        int count = 0;
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            if (record.getCLOList().get(i).getRubricsList().size() > 0) {
                 count++;
             }
         }
-        jLabel14.setText(count+"");
+
+        jLabel18.setText(record.getRubricLevel().getRubricLevels() + "");
+        jLabel14.setText(count + "");
+        jLabel30.setText(record.getStudentList().size()+"");
     }
 
     public MainMenu(int indexOfPane) {
         initComponents();
         EvaluationRecord record = EvaluationRecord.getInstance();
-        jLabel16.setText(record.getCLOList().size()+"");
-        int count =0;
-        for(int i =0;i<record.getCLOList().size();i++)
-        {
-            if(record.getCLOList().get(i).getRubricsList().size()>0)
-            {
+        jLabel16.setText(record.getCLOList().size() + "");
+        int count = 0;
+        for (int i = 0; i < record.getCLOList().size(); i++) {
+            if (record.getCLOList().get(i).getRubricsList().size() > 0) {
                 count++;
             }
         }
-        jLabel14.setText(count+"");
+        jLabel14.setText(count + "");
+        jLabel18.setText(record.getRubricLevel().getRubricLevels() + "");
+        jLabel30.setText(record.getStudentList().size()+"");
         jTabbedPane1.setSelectedIndex(indexOfPane);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

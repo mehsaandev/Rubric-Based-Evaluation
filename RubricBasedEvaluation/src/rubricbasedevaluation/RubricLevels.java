@@ -48,8 +48,8 @@ public class RubricLevels {
         }
         return false;
     }
-    public void setEmpty()
-    {
-        this.levelList =new ArrayList<String>();
-    }
+//    public void setEmpty()
+//    {
+//        levelList =new ArrayList<String>();
+//    }
 }

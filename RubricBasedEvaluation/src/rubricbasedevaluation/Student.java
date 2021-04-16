@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author Ehsaan
  */
-public class Student {
+public class Student extends SystemBody{
     
     private String regNumber;
     private static ArrayList<Assessments> assessmentsList= new ArrayList<Assessments>();
