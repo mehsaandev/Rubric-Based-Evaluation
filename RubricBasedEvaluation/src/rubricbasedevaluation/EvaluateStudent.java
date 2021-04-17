@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
+import javax.swing.DefaultCellEditor;
 
 /**
  *
@@ -236,10 +237,9 @@ public class EvaluateStudent extends javax.swing.JFrame {
                 
                 model.setValueAt(record.getStudentList().get(stdIndex-1).getName(), i, 0);
                 model.setValueAt(Student.getAssessmentList().get(i), i, 1);
-                model.setValueAt(jcomboBox1, i, 2);
             }
             jTable1.setModel(model);
-
+            jTable1.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(jcomboBox1));
             jTabbedPane1.setSelectedIndex(1);
         } else {
              JOptionPane.showMessageDialog(null, "Select Student");
