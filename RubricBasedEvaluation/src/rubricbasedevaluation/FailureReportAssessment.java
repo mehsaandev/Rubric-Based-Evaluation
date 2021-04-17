@@ -10,7 +10,6 @@ package rubricbasedevaluation;
  * @author Ahsan
  */
 public class FailureReportAssessment extends javax.swing.JFrame {
-
     /**
      * Creates new form FailureReportAssessment
      */

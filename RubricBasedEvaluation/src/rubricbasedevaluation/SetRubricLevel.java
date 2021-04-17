@@ -598,7 +598,6 @@ public class SetRubricLevel extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Rubric Levels has been set Successfully");
         record.setRubricLevel(record.getRubricLevel());
-        System.out.print(record.getRubricLevel().getRubricLevels());
         MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
         this.setVisible(false);

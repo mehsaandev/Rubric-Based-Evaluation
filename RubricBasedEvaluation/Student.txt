@@ -1,2 +1,3 @@
 RegNO:CNIC:Email:Name
 Std-1:3520258495935:ehsaan2611@gmail.com:Muhammad;Ahsan
+Std-1:0000000000000:alitariq@gmail.com:Ali;Tariq
