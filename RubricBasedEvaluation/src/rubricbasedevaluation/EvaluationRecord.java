@@ -6,6 +6,10 @@
 package rubricbasedevaluation;
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
@@ -19,6 +23,68 @@ public class EvaluationRecord {
     private RubricLevels rubricLevel = new RubricLevels();
 
     private EvaluationRecord() {
+        loadCLO();
+    }
+
+    private static ArrayList<CLO> loadCLO() {
+        try {
+            int count = 0;
+            ArrayList<CLO> cloList = new ArrayList<CLO>();
+            File reader = new File("CLO.txt");
+            Scanner input = new Scanner(reader);
+            while (input.hasNextLine()) {
+                if (count > 0) {
+                     System.out.println("clo count is" + count);
+                    CLO clo = new CLO();
+                    String getRecord = input.nextLine();
+                    String[] arrayRecord = getRecord.split(";");
+                    System.out.println(arrayRecord[0]);
+                    clo.setName(arrayRecord[0]);
+                    clo.setTotalMarks(Integer.parseInt(arrayRecord[1]));
+                    cloList.add(clo);
+                } else {
+                    String lost = input.nextLine();
+                }
+                count++;
+
+            }
+
+            return cloList;
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "CLO data is not loaded, File not Found");
+        }
+        return null;
+    }
+
+    private static void loadRubric() {
+        try {
+            File rubricFile = new File("Rubrics.txt");
+            Scanner input = new Scanner(rubricFile);
+            int count = 0;
+            while (input.hasNextLine()) {
+
+                System.out.println("count is" + count);
+                if (count > 0) {
+                    System.out.println("Entered count is " + count);
+                    String rubricRecord = input.nextLine();
+                    String[] arrayRubric = rubricRecord.split(":");
+                    Rubrics rubric = new Rubrics();
+
+                    System.out.println("name clo is : " + arrayRubric[1]);
+                    String[] indexNumber = (arrayRubric[0].split("-"));
+                    int index = Integer.parseInt(indexNumber[1]);
+                    System.out.println("Index is :" + index);
+                    rubric.setName(arrayRubric[1]);
+                    evaluationRecord.getCLOList().get(index - 1).getRubricsList().add(rubric);
+                } else {
+                    String lost = input.nextLine();
+                }
+                count++;
+            }
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Rubrics data is not loaded, File not Found");
+        }
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -114,6 +180,8 @@ public class EvaluationRecord {
     public static EvaluationRecord getInstance() {
         if (evaluationRecord == null) {
             evaluationRecord = new EvaluationRecord();
+            evaluationRecord.setCLOList(loadCLO());
+            loadRubric();
             return evaluationRecord;
         }
         return evaluationRecord;
@@ -124,7 +192,7 @@ public class EvaluationRecord {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
+        EvaluationRecord evaluationRecord = EvaluationRecord.getInstance();
         RegisterTeacher loginForm = new RegisterTeacher();
         loginForm.setVisible(true);
     }

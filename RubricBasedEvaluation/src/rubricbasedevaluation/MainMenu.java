@@ -30,7 +30,16 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel18.setText(record.getRubricLevel().getRubricLevels() + "");
         jLabel14.setText(count + "");
-        jLabel30.setText(record.getStudentList().size()+"");
+        jLabel30.setText(record.getStudentList().size() + "");
+        jLabel25.setText(Student.getAssessmentList().size() + "");
+        count = 0;
+        for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+            if (Student.getAssessmentList().get(0).getActive() == true) {
+                count++;
+            }
+        }
+
+        jLabel22.setText(count+"");
     }
 
     public MainMenu(int indexOfPane) {
@@ -45,8 +54,17 @@ public class MainMenu extends javax.swing.JFrame {
         }
         jLabel14.setText(count + "");
         jLabel18.setText(record.getRubricLevel().getRubricLevels() + "");
-        jLabel30.setText(record.getStudentList().size()+"");
+        jLabel30.setText(record.getStudentList().size() + "");
         jTabbedPane1.setSelectedIndex(indexOfPane);
+        jLabel25.setText(Student.getAssessmentList().size() + "");
+        count = 0;
+        for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+            if (Student.getAssessmentList().get(0).getActive() == true) {
+                count++;
+            }
+        }
+
+        jLabel22.setText(count+"");
     }
 
     /**
@@ -522,10 +540,10 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel19.setText("Manage Assessments");
 
         jLabel20.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel20.setText("_______________________________________________________________________________________");
+        jLabel20.setText("______________________________________________________________");
 
         jLabel21.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel21.setText("_______________________________________________________________________________________");
+        jLabel21.setText("______________________________________________________________");
 
         jLabel22.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel22.setText("4");
@@ -553,12 +571,12 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(292, Short.MAX_VALUE)
+                .addContainerGap(287, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addGap(283, 283, 283))
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20))
+                .addGap(281, 281, 281))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -588,7 +606,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel22)
@@ -603,13 +621,13 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel26.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel26.setText("___________________________________________________________________________________________________");
+        jLabel26.setText("______________________________________________________________________________________");
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 45)); // NOI18N
         jLabel27.setText("Manage Students & Evaluation");
 
         jLabel28.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel28.setText("____________________________________________________________________________________________________");
+        jLabel28.setText("______________________________________________________________________________________");
 
         jButton17.setBackground(new java.awt.Color(204, 204, 204));
         jButton17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -698,12 +716,12 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(205, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel28))))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,10 +758,10 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel33.setText("Result & Summary");
 
         jLabel34.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel34.setText("_______________________________________________________________________________________");
+        jLabel34.setText("_________________________________________________________");
 
         jLabel35.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel35.setText("_______________________________________________________________________________________");
+        jLabel35.setText("_________________________________________________________");
 
         jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel36.setText("Results:");
@@ -837,10 +855,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -863,7 +881,7 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -890,7 +908,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel38)
                     .addComponent(jLabel39))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)

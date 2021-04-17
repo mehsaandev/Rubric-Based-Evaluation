@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -146,22 +148,47 @@ public class AddCLO extends javax.swing.JFrame {
         // TODO add your handling code here:
         EvaluationRecord evaluationRecord = EvaluationRecord.getInstance();
         CLO clo = new CLO();
+        boolean flag = false;
         clo.setName(jTextField1.getText());
-        clo.setTotalMarks(Integer.parseInt(jTextField2.getText()));
-        if (evaluationRecord.addCLO(clo) == true) {
-            JOptionPane.showMessageDialog(null, "CLO Has Been Added Successfully");
-            evaluationRecord.setCLOList(evaluationRecord.getCLOList());
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.setVisible(true);
-            this.setVisible(false);
+        try {
+            clo.setTotalMarks(Integer.parseInt(jTextField2.getText()));
+            flag = true;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Invalid Data");
+            
+            flag = false;
         }
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "CLO is already Added...");
+        if (flag == true) {
+            if (evaluationRecord.addCLO(clo) == true) {
+                JOptionPane.showMessageDialog(null, "CLO Has Been Added Successfully");
+                evaluationRecord.setCLOList(evaluationRecord.getCLOList());
+                saveCLOData();
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "CLO is already Added...");
+            }
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
+    private void saveCLOData() {
+        EvaluationRecord record = EvaluationRecord.getInstance();
+           System.out.println("Entered in file hgandling");
+        try {
+            FileWriter writer = new FileWriter("CLO.txt");
+            writer.write("Name:TotalMarks");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
 
+                writer.write("\n"+record.getCLOList().get(i).getName()+";");
+                writer.write(record.getCLOList().get(i).getTotalMarks()+"");
+            }
+            writer.close();
+
+        } catch (IOException ex) {
+        }
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         MainMenu mainMenu = new MainMenu();

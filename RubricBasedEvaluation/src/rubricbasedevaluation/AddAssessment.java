@@ -21,8 +21,6 @@ public class AddAssessment extends javax.swing.JFrame {
     public AddAssessment() {
         initComponents();
         DefaultComboBoxModel<String> listCLO = new DefaultComboBoxModel<String>();
-        EvaluationRecord record = EvaluationRecord.getInstance();
-
         for (int i = 1; i <= 10; i++) {
             listCLO.addElement("" + i);
         }
@@ -561,9 +559,47 @@ public class AddAssessment extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         System.out.print(jTable1.getModel().getValueAt(1, 1).toString());
-        MainMenu mainMenu = new MainMenu(1);
-//        mainMenu.setVisible(true);
-//        this.setVisible(false);
+        EvaluationRecord record = EvaluationRecord.getInstance();
+
+        boolean flag = false;
+        CLO clo = new CLO();
+        Rubrics rubric = new Rubrics();
+        Assessments assessment = new Assessments();
+        System.out.println("Row count is: " + jTable1.getModel().getRowCount());
+        for (int i = 0; i < jTable1.getModel().getRowCount(); i++) {
+
+            try {
+                Questions question = new Questions();
+                int cloIndex = Integer.parseInt(jComboBox2.getSelectedItem().toString().substring(4, jComboBox2.getSelectedItem().toString().length()));
+                int rubricIndex = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+                rubric = record.getCLOList().get(cloIndex - 1).getRubricsList().get(rubricIndex - 1);
+                clo = record.getCLOList().get(cloIndex - 1);
+                question.setCLO(clo);
+                question.setRubric(rubric);
+                question.setTotalMarks(Integer.parseInt(jTable1.getModel().getValueAt(i, 2).toString()));
+                question.setQuestionStatement(jTable1.getModel().getValueAt(i, 1).toString());
+                assessment.addQuestion(question);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Invalid Data in Table");
+                flag = true;
+                break;
+            }
+        }
+        if (flag == false) {
+
+            Student.addAssessment(assessment);
+            Student.setAssessmentList(Student.getAssessmentList());
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                Student.getAssessmentList().get(i).setActive(false);
+            }
+            JOptionPane.showMessageDialog(null, "Assessment has been Added Successfully");
+            MainMenu mainMenu = new MainMenu(1);
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
+
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -596,16 +632,13 @@ public class AddAssessment extends javax.swing.JFrame {
             model.addColumn("Question Statement");
             model.addColumn("Marks of Question");
             model.setNumRows(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
-            for(int i=0;i<Integer.parseInt(jComboBox1.getSelectedItem().toString());i++)
-            {
-                model.setValueAt("Question No. "+(i+1), i, 0);
+            for (int i = 0; i < Integer.parseInt(jComboBox1.getSelectedItem().toString()); i++) {
+                model.setValueAt("Question No. " + (i + 1), i, 0);
             }
-           jTable1.setModel(model);
+            jTable1.setModel(model);
             jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Select Rubric");
+        } else {
+            JOptionPane.showMessageDialog(null, "Select Rubric");
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 

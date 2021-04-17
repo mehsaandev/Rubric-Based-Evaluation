@@ -7,6 +7,8 @@ package rubricbasedevaluation;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -216,7 +218,7 @@ public class AddRubric extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         boolean flag = (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) >= '0') && (jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) <= '9');
-     System.out.println();
+        System.out.println();
         if (flag == true) {
 
             jTabbedPane1.setSelectedIndex(1);
@@ -240,17 +242,36 @@ public class AddRubric extends javax.swing.JFrame {
         } else {
             Rubrics rubric = new Rubrics();
             rubric.setName(jTextField2.getText());
-            int index = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1)+"");
+            int index = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString().charAt(jComboBox1.getModel().getSelectedItem().toString().length() - 1) + "");
             EvaluationRecord record = EvaluationRecord.getInstance();
-           record.getCLOList().get(index-1).addRubric(rubric);
+            record.getCLOList().get(index - 1).addRubric(rubric);
             JOptionPane.showMessageDialog(null, "Rubrics have been Added Successfully...");
             record.setCLOList(record.getCLOList());
+            saveRubric();
             MainMenu mainMenu = new MainMenu();
             mainMenu.setVisible(true);
             this.setVisible(false);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+    private void saveRubric() {
+        try {
+            FileWriter writer = new FileWriter("Rubrics.txt");
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            writer.write("CLO:RubricName");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
+                for (int j = 0; j < record.getCLOList().get(i).getRubricsList().size(); j++) {
+                      writer.write("\nCLO-"+(i+1)+":"+record.getCLOList().get(i).getRubricsList().get(j).getName());
+                }
+            }
+            writer.close();
+        }
+        catch(IOException ex)
+        {
+            
+        }
+
+    }
 
     /**
      * @param args the command line arguments

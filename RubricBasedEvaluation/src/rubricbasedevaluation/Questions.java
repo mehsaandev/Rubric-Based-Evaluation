@@ -14,8 +14,13 @@ public class Questions {
     private Rubrics rubric;
     private int obtainedMarks;
     private int totalMarks;
+    String questionStatement;
     
     ////////////////////////////////////////////////////////////////////////////    Setters
+    public void setQuestionStatement(String questionStatement)
+    {
+        this.questionStatement = questionStatement;
+    }
     public void setCLO(CLO clo)
     {
         this.clo = clo;
@@ -34,6 +39,10 @@ public class Questions {
     }
     
     ////////////////////////////////////////////////////////////////////////////    Getters
+    public String getQuestionStatement()
+    {
+        return this.questionStatement;
+    }
     public CLO getClO()
     {
         return this.clo;

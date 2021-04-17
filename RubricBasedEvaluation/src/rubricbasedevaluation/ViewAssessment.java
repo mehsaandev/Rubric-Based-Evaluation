@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -16,6 +18,31 @@ public class ViewAssessment extends javax.swing.JFrame {
      */
     public ViewAssessment() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Assessment No.");
+        model.addColumn("CLO");
+        model.addColumn("Rubric");
+        model.addColumn("Total Questions");
+        model.addColumn("Total Marks of Assessment");
+        model.setNumRows(Student.getAssessmentList().size());
+        int totalMarks = 0;
+        for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+            model.setValueAt((i + 1) + "", i, 0);
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            model.setValueAt("CLO-" + (record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(0).getClO()) + 1), i, 1);
+            model.setValueAt("Rubric-"+record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(0).getClO())).searchRubric(Student.getAssessmentList().get(i).getQuestionsList().get(0).getRubric()),i,2);
+            model.setValueAt(Student.getAssessmentList().get(i).getQuestionsList().size(), i,3);
+            for(Questions question : Student.getAssessmentList().get(i).getQuestionsList())
+            {
+                System.out.println(i +" " +totalMarks+ "");
+                totalMarks = totalMarks + question.getTotalMarks();
+                System.out.println(i +" " +totalMarks+ "");
+            }
+            model.setValueAt(totalMarks+"", i,4);
+                
+        }
+        jTable1.setModel(model);
+
     }
 
     /**
