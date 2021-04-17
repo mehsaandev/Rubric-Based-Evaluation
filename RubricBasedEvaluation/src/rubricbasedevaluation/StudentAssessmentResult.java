@@ -5,6 +5,9 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -127,10 +130,7 @@ public class StudentAssessmentResult extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Index", "Assessment Number", "Total Marks", "Obtained Marks", "Percentage"
@@ -223,7 +223,14 @@ public class StudentAssessmentResult extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
+        if (jTextField1.getText().toString().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter CNIC");
+        } else {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+//            jTable1.setModel();
+            jTabbedPane1.setSelectedIndex(1);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

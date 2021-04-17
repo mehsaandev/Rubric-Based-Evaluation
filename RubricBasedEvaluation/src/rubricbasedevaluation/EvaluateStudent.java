@@ -356,11 +356,45 @@ public class EvaluateStudent extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        System.out.print(jTable2.getModel().getValueAt(0, 0).getClass().toString());
-        JOptionPane.showMessageDialog(null, "Student is Evaluated");
-        MainMenu mainMenu = new MainMenu(2);
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        int assessIndex = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        int marks = -1;
+
+        for (int i = 0; i < Student.getAssessmentList().get(assessIndex - 1).getQuestionsList().size(); i++) {
+            String getRubric = jTable2.getModel().getValueAt(i, 0).toString();
+            try {
+                String[] indexGet = getRubric.split(" ");
+                marks = Integer.parseInt(indexGet[1]);
+            } catch (Exception ex) {
+                marks = -1;
+                break;
+            }
+        }
+
+        if (marks != -1) {
+            for (int i = 0; i < Student.getAssessmentList().get(assessIndex - 1).getQuestionsList().size(); i++) {
+                System.out.println("OM 0 before : " + record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                System.out.println("OM 1 before" + record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                String getRubric = jTable2.getModel().getValueAt(i, 0).toString();
+                String[] indexGet = getRubric.split(" ");
+                marks = Integer.parseInt(indexGet[1]);
+                Double marksValue = (Double.valueOf(marks) / record.getRubricLevel().getRubricLevels()) * Student.getAssessmentList().get(assessIndex - 1).getQuestionsList().get(i).getTotalMarks();
+                record.getStudentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).setObtainedMarks(marksValue);
+                System.out.println("OM 0 after "+record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                System.out.println("OM 1 after"+record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).setObtainedMarks(10.0);
+                System.out.println("OM 1 changed "+record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                System.out.println("OM 1 changed"+record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+
+            }
+
+            JOptionPane.showMessageDialog(null, "Student is Evaluated");
+            MainMenu mainMenu = new MainMenu(2);
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Evaluate All Questions");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -16,6 +18,36 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
      */
     public AssessmentBasedResult() {
         initComponents();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Index");
+        model.addColumn("Student ID");
+        model.addColumn("Student Name");
+        model.addColumn("Assessment");
+        model.addColumn("Assessment T.Marks");
+        model.addColumn("Assessment O.Marks");
+        model.addColumn("Percentage Marks");
+        model.setNumRows(6);
+        int count = 0;
+        for(int i=0;i<record.getStudentList().size();i++)
+        {
+            for(int j=0;j<record.getStudentList().get(i).getAssessmentofStudent().size();j++)
+            {
+                int totalMarks = 0;
+                double obtainedMarks = 0;
+                for(int k=0;k<record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().size();k++)
+                {
+                    totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
+                    obtainedMarks = obtainedMarks + record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().get(k).getObtainedMarks();
+                }
+                model.setValueAt(totalMarks, count, 4);
+                model.setValueAt(obtainedMarks, count, 5);
+                count++;
+            }
+        }
+        jTable1.setFont(jButton1.getFont());
+        jTable1.setModel(model);
+
     }
 
     /**

@@ -65,6 +65,9 @@ public class Student extends SystemBody {
     public static ArrayList<Assessments> getAssessmentList() {
         return assessmentsList;
     }
+    public  ArrayList<Assessments> getAssessmentofStudent(){
+        return assessmentsList;
+    }
 
     public static void setAssessmentList(ArrayList<Assessments> assessmentList) {
         assessmentsList = assessmentList;

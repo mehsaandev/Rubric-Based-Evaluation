@@ -8,6 +8,8 @@ package rubricbasedevaluation;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -519,7 +521,7 @@ public class SetRubricLevel extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        
+
         int rubricLevel = 0;
         try {
             rubricLevel = Integer.parseInt(jComboBox1.getModel().getSelectedItem().toString());
@@ -598,10 +600,25 @@ public class SetRubricLevel extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Rubric Levels has been set Successfully");
         record.setRubricLevel(record.getRubricLevel());
+        saveRubricLevel();
         MainMenu mainMenu = new MainMenu();
         mainMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void saveRubricLevel() {
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        try {
+            FileWriter writer = new FileWriter("RubricLevels.txt");
+            writer.write("Rubric Level");
+            writer.write("\n" + record.getRubricLevel().getRubricLevels());
+            for (int i = 0; i < record.getRubricLevel().getLevelList().size(); i++) {
+                writer.write("\n" + record.getRubricLevel().getLevelList().get(i));
+            }
+            writer.close();
+        } catch (IOException ex) {
+        }
+
+    }
 
     /**
      * @param args the command line arguments

@@ -26,6 +26,25 @@ public class EvaluationRecord {
         loadCLO();
     }
 
+    private static void loadRubricLevels() {
+        try {
+            File rubricLevelReader = new File("RubricLevels.txt");
+            Scanner getLevel = new Scanner(rubricLevelReader);
+            RubricLevels rubricLevel = new RubricLevels();
+            getLevel.nextLine();
+            rubricLevel.setRubricLevels(Integer.parseInt(getLevel.nextLine()));
+            ArrayList<String> listRubric = new  ArrayList<String>();
+            while (getLevel.hasNextLine()) {
+                listRubric.add(getLevel.nextLine());
+            }
+            rubricLevel.setLevelList(listRubric);
+            evaluationRecord.setRubricLevel(rubricLevel);
+        } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Rubrics Levels data is not loaded, File not Found");
+        }
+
+    }
+
     private static ArrayList<Student> loadStudent() {
         try {
             int count = 0;
@@ -42,9 +61,7 @@ public class EvaluationRecord {
                     student.setEmail(getStd[2]);
                     student.setName(getStd[3]);
                     studentList.add(student);
-                }
-                else
-                {
+                } else {
                     String lost = studentReader.nextLine();
                 }
                 count++;
@@ -264,6 +281,7 @@ public class EvaluationRecord {
             loadAssessment();
             loadQuestions();
             evaluationRecord.setStudentList(loadStudent());
+            loadRubricLevels();
             return evaluationRecord;
         }
         return evaluationRecord;

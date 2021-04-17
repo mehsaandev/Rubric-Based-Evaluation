@@ -12,7 +12,7 @@ package rubricbasedevaluation;
 public class Questions {
     private CLO clo;
     private Rubrics rubric;
-    private int obtainedMarks;
+    private double obtainedMarks;
     private int totalMarks;
     String questionStatement;
     
@@ -29,7 +29,7 @@ public class Questions {
     {
         this.rubric = rubric;
     }
-    public void setObtainedMarks(int obtainedMarks)
+    public void setObtainedMarks(double obtainedMarks)
     {
         this.obtainedMarks = obtainedMarks;
     }
@@ -51,7 +51,7 @@ public class Questions {
     {
         return this.rubric;
     }
-    public int getObtainedMarks()
+    public double getObtainedMarks()
     {
         return this.obtainedMarks;
     }

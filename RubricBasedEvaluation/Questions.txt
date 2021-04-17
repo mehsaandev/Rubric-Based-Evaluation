@@ -3,4 +3,4 @@ AssessmentIndex;QuestionStatement;QuestionMarks;CLO;Rubric
 1;sadasdasd;10;CLO-1;Rubric-2
 1;asdasdas;10;CLO-1;Rubric-2
 1;asdasd;10;CLO-1;Rubric-2
-1;asdasd;10;CLO-1;Rubric-2
+1;asdasd;60;CLO-1;Rubric-2
