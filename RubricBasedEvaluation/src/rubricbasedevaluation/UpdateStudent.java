@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -246,6 +248,7 @@ public class UpdateStudent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Student data is Updated Successfully");
             MainMenu mainMenu = new MainMenu(2);
             record.setStudentList(record.getStudentList());
+            saveStudent();
             mainMenu.setVisible(true);
             this.setVisible(false);
         } else {
@@ -253,7 +256,25 @@ public class UpdateStudent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+private void saveStudent() {
+        try {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            FileWriter writer = new FileWriter("Student.txt");
+            writer.write("RegNO:CNIC:Email:Name");
+            for (int i = 0; i < record.getStudentList().size(); i++) {
 
+                writer.write("\n"+record.getStudentList().get(i).getRegNumber() + ":");
+                writer.write(record.getStudentList().get(i).getCNIC() + ":");
+                writer.write(record.getStudentList().get(i).getEmail() + ":");
+                writer.write(record.getStudentList().get(i).getName());
+            }
+            writer.close();
+
+        } catch (IOException ex) {
+
+        }
+
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);

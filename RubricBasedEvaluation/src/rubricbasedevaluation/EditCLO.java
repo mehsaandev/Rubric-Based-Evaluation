@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Cursor;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -239,6 +241,7 @@ public class EditCLO extends javax.swing.JFrame {
         if (record.editCLO(index - 1, clo) == true) {
             JOptionPane.showMessageDialog(null, "CLO has been Updated Successfully");
             record.setCLOList(record.getCLOList());
+            saveCLOData();
             MainMenu mainMenu = new MainMenu();
             mainMenu.setVisible(true);
             this.setVisible(false);
@@ -246,7 +249,22 @@ public class EditCLO extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton18ActionPerformed
+private void saveCLOData() {
+        EvaluationRecord record = EvaluationRecord.getInstance();
+           System.out.println("Entered in file hgandling");
+        try {
+            FileWriter writer = new FileWriter("CLO.txt");
+            writer.write("Name:TotalMarks");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
 
+                writer.write("\n"+record.getCLOList().get(i).getName()+";");
+                writer.write(record.getCLOList().get(i).getTotalMarks()+"");
+            }
+            writer.close();
+
+        } catch (IOException ex) {
+        }
+    }
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         EvaluationRecord record = EvaluationRecord.getInstance();

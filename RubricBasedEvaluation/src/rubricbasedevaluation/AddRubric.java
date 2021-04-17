@@ -270,7 +270,6 @@ public class AddRubric extends javax.swing.JFrame {
         {
             
         }
-
     }
 
     /**

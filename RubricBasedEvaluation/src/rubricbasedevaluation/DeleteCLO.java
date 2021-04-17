@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -142,6 +144,7 @@ public class DeleteCLO extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "CLO has been removed Successfully");
                 record.setCLOList(record.getCLOList());
                 MainMenu mainMenu = new MainMenu();
+                saveCLOData();
                 mainMenu.setVisible(true);
                 this.setVisible(false);
             }
@@ -152,7 +155,22 @@ public class DeleteCLO extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+private void saveCLOData() {
+        EvaluationRecord record = EvaluationRecord.getInstance();
+           System.out.println("Entered in file hgandling");
+        try {
+            FileWriter writer = new FileWriter("CLO.txt");
+            writer.write("Name:TotalMarks");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
 
+                writer.write("\n"+record.getCLOList().get(i).getName()+";");
+                writer.write(record.getCLOList().get(i).getTotalMarks()+"");
+            }
+            writer.close();
+
+        } catch (IOException ex) {
+        }
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         MainMenu mainMenu = new MainMenu();

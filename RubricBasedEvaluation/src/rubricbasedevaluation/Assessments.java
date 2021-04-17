@@ -46,19 +46,9 @@ public class Assessments {
        }
        return false;
    }
-   /**
-    * 
-    * @param question
-    * @return 
-    */
-   public boolean editQuestion(Questions question)
+   public void editQuestion(int index ,Questions question)
    {
-       if(searchQuestion(question) !=-1)
-       {
-           this.questionsList.set(searchQuestion(question), question);
-           return true;
-       }
-       return false;
+           this.questionsList.set(index, question);
    }
    public boolean removeQuestion(Questions question)
    {

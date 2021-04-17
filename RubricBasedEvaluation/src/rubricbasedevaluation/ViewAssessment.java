@@ -30,7 +30,7 @@ public class ViewAssessment extends javax.swing.JFrame {
             model.setValueAt((i + 1) + "", i, 0);
             EvaluationRecord record = EvaluationRecord.getInstance();
             model.setValueAt("CLO-" + (record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(0).getClO()) + 1), i, 1);
-            model.setValueAt("Rubric-"+record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(0).getClO())).searchRubric(Student.getAssessmentList().get(i).getQuestionsList().get(0).getRubric()),i,2);
+            model.setValueAt("Rubric-"+(record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(0).getClO())).searchRubric(Student.getAssessmentList().get(i).getQuestionsList().get(0).getRubric())+1),i,2);
             model.setValueAt(Student.getAssessmentList().get(i).getQuestionsList().size(), i,3);
             for(Questions question : Student.getAssessmentList().get(i).getQuestionsList())
             {

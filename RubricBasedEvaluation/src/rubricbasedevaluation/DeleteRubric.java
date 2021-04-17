@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -268,12 +270,29 @@ public class DeleteRubric extends javax.swing.JFrame {
             record.getCLOList().get(indexCLO-1).getRubricsList().remove(rubric);
             JOptionPane.showMessageDialog(null, "Rubric has been Removed Successfully");
             MainMenu mainMenu = new MainMenu();
+            saveRubric();
             mainMenu.setVisible(true);
             this.setVisible(false);
         }
 
     }//GEN-LAST:event_jButton17ActionPerformed
-
+private void saveRubric() {
+        try {
+            FileWriter writer = new FileWriter("Rubrics.txt");
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            writer.write("CLO:RubricName");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
+                for (int j = 0; j < record.getCLOList().get(i).getRubricsList().size(); j++) {
+                      writer.write("\nCLO-"+(i+1)+":"+record.getCLOList().get(i).getRubricsList().get(j).getName());
+                }
+            }
+            writer.close();
+        }
+        catch(IOException ex)
+        {
+            
+        }
+    }
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);

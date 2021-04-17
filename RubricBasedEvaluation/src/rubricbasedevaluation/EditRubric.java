@@ -6,6 +6,8 @@
 package rubricbasedevaluation;
 
 import java.awt.Font;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -266,12 +268,29 @@ public class EditRubric extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Rubric is Updated Successfully");
             record.setCLOList(record.getCLOList());
             MainMenu mainMenu = new MainMenu();
+            saveRubric();
             mainMenu.setVisible(true);
             this.setVisible(false);
         }
 
     }//GEN-LAST:event_jButton7ActionPerformed
-
+private void saveRubric() {
+        try {
+            FileWriter writer = new FileWriter("Rubrics.txt");
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            writer.write("CLO:RubricName");
+            for (int i = 0; i < record.getCLOList().size(); i++) {
+                for (int j = 0; j < record.getCLOList().get(i).getRubricsList().size(); j++) {
+                      writer.write("\nCLO-"+(i+1)+":"+record.getCLOList().get(i).getRubricsList().get(j).getName());
+                }
+            }
+            writer.close();
+        }
+        catch(IOException ex)
+        {
+            
+        }
+    }
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         // TODO add your handling code here:
         EvaluationRecord record = EvaluationRecord.getInstance();

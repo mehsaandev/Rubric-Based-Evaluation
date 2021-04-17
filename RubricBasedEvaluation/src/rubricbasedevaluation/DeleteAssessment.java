@@ -5,6 +5,7 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,12 @@ public class DeleteAssessment extends javax.swing.JFrame {
      */
     public DeleteAssessment() {
         initComponents();
+        DefaultComboBoxModel<String> listActiveAssessment = new DefaultComboBoxModel<String>();
+        for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+            listActiveAssessment.addElement((i + 1) + "");
+        }
+        jComboBox1.setModel(listActiveAssessment);
+        jComboBox1.getModel().setSelectedItem("Select Assessment");
     }
 
     /**
@@ -47,7 +54,7 @@ public class DeleteAssessment extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Select Assessment to Delete:");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Assessment 1", "Assessment 2", "Assessment 3", "Assessment 4" }));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -70,18 +77,18 @@ public class DeleteAssessment extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(221, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,8 +96,8 @@ public class DeleteAssessment extends javax.swing.JFrame {
                 .addGap(143, 143, 143)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -120,10 +127,19 @@ public class DeleteAssessment extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Assessment has been removed Successfully");
-        MainMenu mainMenu = new MainMenu(1);
-        mainMenu.setVisible(true);
-        this.setVisible(false);
+        int index = -1;
+        try {
+            index = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        } catch (Exception ex) {
+            index = -1;
+        }
+        if (index != -1) {
+            Student.deleteAssessment(Student.getAssessmentList().get(index-1));
+            JOptionPane.showMessageDialog(null, "Assessment has been removed Successfully");
+            MainMenu mainMenu = new MainMenu(1);
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

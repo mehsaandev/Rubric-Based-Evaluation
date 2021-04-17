@@ -1,0 +1,2 @@
+AssessmentIndex;QuestionStatement;QuestionMarks;CLO;Rubric
+0;How are You;50;CLO-1;Rubric-1

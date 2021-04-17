@@ -26,6 +26,91 @@ public class EvaluationRecord {
         loadCLO();
     }
 
+    private static ArrayList<Student> loadStudent() {
+        try {
+            int count = 0;
+            File reader = new File("Student.txt");
+            Scanner studentReader = new Scanner(reader);
+            ArrayList<Student> studentList = new ArrayList<Student>();
+            while (studentReader.hasNextLine()) {
+                if (count > 0) {
+                    String[] getStd = studentReader.nextLine().split(":");
+
+                    Student student = new Student();
+                    student.setRegNumber(getStd[0]);
+                    student.setCNIC(getStd[1]);
+                    student.setEmail(getStd[2]);
+                    student.setName(getStd[3]);
+                    studentList.add(student);
+                }
+                else
+                {
+                    String lost = studentReader.nextLine();
+                }
+                count++;
+            }
+            return studentList;
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Student data is not loaded, File not Found");
+        }
+        return null;
+
+    }
+
+    private static void loadAssessment() {
+        try {
+            File reader = new File("Assessment.txt");
+            Scanner input = new Scanner(reader);
+            int count = 0;
+            while (input.hasNextLine()) {
+                if (count > 0) {
+                    Assessments assessment = new Assessments();
+                    String getAssessment = input.nextLine();
+                    if (getAssessment.equals("true")) {
+                        assessment.setActive(true);
+                    } else if (getAssessment.equals("false")) {
+                        assessment.setActive(false);
+                    }
+                    Student.addAssessment(assessment);
+                } else {
+                    String lost = input.nextLine();
+                }
+                count++;
+            }
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Assessment data is not loaded, File not Found");
+        }
+
+    }
+
+    private static void loadQuestions() {
+
+        try {
+            File reader = new File("Questions.txt");
+            Scanner input = new Scanner(reader);
+            int count = 0;
+            while (input.hasNextLine()) {
+                if (count > 0) {
+
+                    String[] getQuestions = input.nextLine().split(";");
+                    int cloIndex = Integer.parseInt(getQuestions[3].substring(4, getQuestions[3].length()));
+                    int indexRubric = Integer.parseInt(getQuestions[4].substring(7, getQuestions[4].length()));
+                    Questions question = new Questions();
+                    question.setCLO(evaluationRecord.getCLOList().get(cloIndex - 1));
+                    question.setRubric(evaluationRecord.getCLOList().get(cloIndex - 1).getRubricsList().get(indexRubric - 1));
+                    question.setQuestionStatement(getQuestions[1]);
+                    question.setTotalMarks(Integer.parseInt(getQuestions[2]));
+                    Student.getAssessmentList().get(Integer.parseInt(getQuestions[0])).getQuestionsList().add(question);
+                } else {
+                    String lost = input.nextLine();
+                }
+                count++;
+            }
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Question data is not loaded, File not Found");
+        }
+    }
+
     private static ArrayList<CLO> loadCLO() {
         try {
             int count = 0;
@@ -34,7 +119,6 @@ public class EvaluationRecord {
             Scanner input = new Scanner(reader);
             while (input.hasNextLine()) {
                 if (count > 0) {
-                     System.out.println("clo count is" + count);
                     CLO clo = new CLO();
                     String getRecord = input.nextLine();
                     String[] arrayRecord = getRecord.split(";");
@@ -48,7 +132,6 @@ public class EvaluationRecord {
                 count++;
 
             }
-
             return cloList;
 
         } catch (FileNotFoundException ex) {
@@ -64,17 +147,13 @@ public class EvaluationRecord {
             int count = 0;
             while (input.hasNextLine()) {
 
-                System.out.println("count is" + count);
                 if (count > 0) {
-                    System.out.println("Entered count is " + count);
                     String rubricRecord = input.nextLine();
                     String[] arrayRubric = rubricRecord.split(":");
                     Rubrics rubric = new Rubrics();
 
-                    System.out.println("name clo is : " + arrayRubric[1]);
                     String[] indexNumber = (arrayRubric[0].split("-"));
                     int index = Integer.parseInt(indexNumber[1]);
-                    System.out.println("Index is :" + index);
                     rubric.setName(arrayRubric[1]);
                     evaluationRecord.getCLOList().get(index - 1).getRubricsList().add(rubric);
                 } else {
@@ -182,6 +261,9 @@ public class EvaluationRecord {
             evaluationRecord = new EvaluationRecord();
             evaluationRecord.setCLOList(loadCLO());
             loadRubric();
+            loadAssessment();
+            loadQuestions();
+            evaluationRecord.setStudentList(loadStudent());
             return evaluationRecord;
         }
         return evaluationRecord;

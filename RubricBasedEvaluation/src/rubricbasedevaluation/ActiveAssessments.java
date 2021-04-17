@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -160,6 +162,7 @@ public class ActiveAssessments extends javax.swing.JFrame {
             Student.getAssessmentList().get(index - 1).setActive(jCheckBox1.isSelected());
             JOptionPane.showMessageDialog(null, "Assessment is Updated Successfully");
             MainMenu mainMenu = new MainMenu(1);
+            saveAssessment();
             mainMenu.setVisible(true);
             this.setVisible(false);
         }
@@ -169,7 +172,19 @@ public class ActiveAssessments extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+private void saveAssessment() {
+        try {
+            FileWriter writer = new FileWriter("Assessment.txt");
+            writer.write("statusActive");
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                writer.write("\n" + Student.getAssessmentList().get(i).getActive() + "");
+            }
+            writer.close();
+        } catch (IOException ex) {
 
+        }
+
+    }
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
         int index = -1;

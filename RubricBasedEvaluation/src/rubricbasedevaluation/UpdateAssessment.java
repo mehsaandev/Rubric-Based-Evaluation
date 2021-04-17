@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -49,16 +51,6 @@ public class UpdateAssessment extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Update Assessment");
@@ -141,7 +133,7 @@ public class UpdateAssessment extends javax.swing.JFrame {
         });
 
         jButton10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton10.setText("Next");
+        jButton10.setText("Update");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -193,92 +185,6 @@ public class UpdateAssessment extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Step 2", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(242, 242, 247));
-
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel22.setText("Marks of Question No.");
-
-        jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel23.setText("Marks of Question No.");
-
-        jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel24.setText("1");
-
-        jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel25.setText("2");
-
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton11.setText("Back");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
-        jButton12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton12.setText("Update");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
-        jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel26.setText("Edit Marks");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel26))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel23))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel25)))
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(230, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel26)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton12)
-                    .addComponent(jButton11))
-                .addGap(31, 31, 31))
-        );
-
-        jTabbedPane1.addTab("Step 3", jPanel3);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,12 +199,81 @@ public class UpdateAssessment extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        MainMenu mainMenu = new MainMenu(1);
-        mainMenu.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        boolean flag = false;
+        CLO clo = new CLO();
+        Rubrics rubric = new Rubrics();
+        Assessments assessment = new Assessments();
+        for (int i = 0; i < jTable1.getModel().getRowCount(); i++) {
+
+           {
+                Questions question = new Questions();
+                int cloIndex = record.searchCLO(Student.getAssessmentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getQuestionsList().get(0).getClO());
+                System.out.print("CLO index"+cloIndex);
+                int rubricIndex = (record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getQuestionsList().get(i).getClO())).searchRubric(Student.getAssessmentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getQuestionsList().get(i).getRubric()));
+                clo = record.getCLOList().get(cloIndex);
+                rubric = record.getCLOList().get(cloIndex).getRubricsList().get(rubricIndex);
+                question.setCLO(clo);
+                question.setRubric(rubric);
+                question.setTotalMarks(Integer.parseInt(jTable1.getModel().getValueAt(i, 2).toString()));
+                question.setQuestionStatement(jTable1.getModel().getValueAt(i, 1).toString());
+                question.setObtainedMarks(0);
+                assessment = Student.getAssessmentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1);
+                assessment.editQuestion(i, question);
+
+            } 
+        }
+        if (flag == false) {
+            Student.editAssessment(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1, assessment);
+            JOptionPane.showMessageDialog(null, "Assessment has been Updated Successfully");
+            saveAssessment();
+            saveQuestions();
+            MainMenu mainMenu = new MainMenu(1);
+            mainMenu.setVisible(true);
+            this.setVisible(false);
+
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+     private void saveAssessment() {
+        try {
+            FileWriter writer = new FileWriter("Assessment.txt");
+            writer.write("statusActive");
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                writer.write("\n" + Student.getAssessmentList().get(i).getActive() + "");
+            }
+            writer.close();
+        } catch (IOException ex) {
+
+        }
+
+    }
+
+    private void saveQuestions() {
+        try {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+
+            FileWriter writer = new FileWriter("Questions.txt");
+            writer.write("AssessmentIndex;QuestionStatement;QuestionMarks;CLO;Rubric");
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                for (int j = 0; j < Student.getAssessmentList().get(i).getQuestionsList().size(); j++) {
+                    writer.write("\n"+i+";");
+                    writer.write( Student.getAssessmentList().get(i).getQuestionsList().get(j).getQuestionStatement() + ";");
+                    writer.write(Student.getAssessmentList().get(i).getQuestionsList().get(j).getTotalMarks() + ";");
+                    writer.write("CLO-" + (record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(j).getClO()) + 1) + ";");
+                    writer.write("Rubric-"+(record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(j).getClO())).searchRubric(Student.getAssessmentList().get(i).getQuestionsList().get(j).getRubric())+1));
+                }
+            }
+            writer.close();
+        } catch (IOException ex) {
+
+        }
+    }
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -308,48 +283,30 @@ public class UpdateAssessment extends javax.swing.JFrame {
         } catch (Exception ex) {
             index = -1;
         }
-        if (index == -1) {
-            System.out.println("Enteered in index -1 whichs is: " + (index-1));
+        if (index != -1) {
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("Question Number");
             model.addColumn("Question Statement");
             model.addColumn("Marks of Question");
-            model.setRowCount(Student.getAssessmentList().size());
+            model.setRowCount(Student.getAssessmentList().get(index-1).getQuestionsList().size());
             for (int i = 0; i < Student.getAssessmentList().get(index - 1).getQuestionsList().size(); i++) {
-                model.setValueAt("Question No. " + (i + 1), i, 0);
+                model.setValueAt("Question No. " + (i+ 1), i, 0);
                 model.setValueAt(Student.getAssessmentList().get(index - 1).getQuestionsList().get(i).getQuestionStatement(), i, 1);
-                model.setValueAt(Student.getAssessmentList().get(index - 1).getQuestionsList().get(i).getTotalMarks(), i, 1);
+                model.setValueAt(Student.getAssessmentList().get(index - 1).getQuestionsList().get(i).getTotalMarks(), i, 2);
             }
             jTable1.setModel(model);
-            
-
+            jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Select Assessment");
         }
-
-        jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() + 1);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "Assessment has been added");
         MainMenu mainMenu = new MainMenu(1);
         mainMenu.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,25 +346,15 @@ public class UpdateAssessment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

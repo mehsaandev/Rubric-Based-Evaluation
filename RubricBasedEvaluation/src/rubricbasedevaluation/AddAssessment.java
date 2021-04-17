@@ -8,6 +8,8 @@ package rubricbasedevaluation;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -558,9 +560,7 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        System.out.print(jTable1.getModel().getValueAt(1, 1).toString());
         EvaluationRecord record = EvaluationRecord.getInstance();
-
         boolean flag = false;
         CLO clo = new CLO();
         Rubrics rubric = new Rubrics();
@@ -595,13 +595,48 @@ public class AddAssessment extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Assessment has been Added Successfully");
             MainMenu mainMenu = new MainMenu(1);
+            saveAssessment();
+            saveQuestions();
             mainMenu.setVisible(true);
             this.setVisible(false);
         }
 
 
     }//GEN-LAST:event_jButton10ActionPerformed
+    private void saveAssessment() {
+        try {
+            FileWriter writer = new FileWriter("Assessment.txt");
+            writer.write("statusActive");
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                writer.write("\n" + Student.getAssessmentList().get(i).getActive() + "");
+            }
+            writer.close();
+        } catch (IOException ex) {
 
+        }
+
+    }
+
+    private void saveQuestions() {
+        try {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+
+            FileWriter writer = new FileWriter("Questions.txt");
+            writer.write("AssessmentIndex;QuestionStatement;QuestionMarks;CLO;Rubric");
+            for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+                for (int j = 0; j < Student.getAssessmentList().get(i).getQuestionsList().size(); j++) {
+                    writer.write("\n"+i+";");
+                    writer.write( Student.getAssessmentList().get(i).getQuestionsList().get(j).getQuestionStatement() + ";");
+                    writer.write(Student.getAssessmentList().get(i).getQuestionsList().get(j).getTotalMarks() + ";");
+                    writer.write("CLO-" + (record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(j).getClO()) + 1) + ";");
+                    writer.write("Rubric-"+(record.getCLOList().get(record.searchCLO(Student.getAssessmentList().get(i).getQuestionsList().get(j).getClO())).searchRubric(Student.getAssessmentList().get(i).getQuestionsList().get(j).getRubric())+1));
+                }
+            }
+            writer.close();
+        } catch (IOException ex) {
+
+        }
+    }
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(jTabbedPane1.getSelectedIndex() - 1);

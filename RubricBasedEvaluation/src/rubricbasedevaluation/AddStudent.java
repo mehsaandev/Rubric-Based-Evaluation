@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -197,6 +199,7 @@ public class AddStudent extends javax.swing.JFrame {
                 regNumber++;
                 MainMenu mainMenu = new MainMenu(2);
                 record.setStudentList(record.getStudentList());
+                saveStudent();
                 mainMenu.setVisible(true);
                 this.setVisible(false);
             } else {
@@ -208,6 +211,25 @@ public class AddStudent extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+    private void saveStudent() {
+        try {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            FileWriter writer = new FileWriter("Student.txt");
+            writer.write("RegNO:CNIC:Email:Name");
+            for (int i = 0; i < record.getStudentList().size(); i++) {
+
+                writer.write("\n"+record.getStudentList().get(i).getRegNumber() + ":");
+                writer.write(record.getStudentList().get(i).getCNIC() + ":");
+                writer.write(record.getStudentList().get(i).getEmail() + ":");
+                writer.write(record.getStudentList().get(i).getName());
+            }
+            writer.close();
+
+        } catch (IOException ex) {
+
+        }
+
+    }
 
     /**
      * @param args the command line arguments
