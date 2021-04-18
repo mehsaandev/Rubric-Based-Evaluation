@@ -386,7 +386,18 @@ public class RegisterTeacher extends javax.swing.JFrame {
              Teacher teacher = Teacher.getInstance(name, CNIC, email, username, password);
             JOptionPane.showMessageDialog(null, "Registration Completed");
             LoginForm loginForm = new LoginForm();
-            saveTeacher();
+             try {
+            FileWriter writer = new FileWriter("Teacher.txt");
+            writer.write("Name;email;cnic;username;password\n");
+            writer.write(jTextField1.getText() + ":" + jTextField3.getText() + ";");
+            writer.write(jTextField2.getText() + ";");
+            writer.write(jTextField5.getText() + ";");
+            writer.write(jTextField4.getText() + ";");
+            writer.write(jTextField6.getText());
+            writer.close();
+        } catch (IOException ex) {
+
+        }
             loginForm.setVisible(true);
             this.setVisible(false);
         }
@@ -397,19 +408,7 @@ public class RegisterTeacher extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton1ActionPerformed
     private void saveTeacher() {
-        try {
-            Teacher teacher = Teacher.getTeacher();
-            FileWriter writer = new FileWriter("Teacher.txt");
-            writer.write("Name;email;cnic;username;password\n");
-            writer.write(teacher.getName() + ";");
-            writer.write(teacher.getEmail() + ";");
-            writer.write(teacher.getCNIC() + ";");
-            writer.write(teacher.getUsername() + ";");
-            writer.write(teacher.getPassword());
-            writer.close();
-        } catch (IOException ex) {
-
-        }
+       
     }
 
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased

@@ -35,7 +35,10 @@ public class EvaluateStudent extends javax.swing.JFrame {
         jComboBox1.getModel().setSelectedItem("Select Student");
         listActiveAssessment = new DefaultComboBoxModel<String>();
         for (int i = 0; i < Student.getAssessmentList().size(); i++) {
-            listActiveAssessment.addElement((i + 1) + "");
+            if (Student.getAssessmentList().get(i).getActive() == true) {
+                listActiveAssessment.addElement((i + 1) + "");
+            }
+
         }
         jComboBox2.setModel(listActiveAssessment);
         jComboBox2.getModel().setSelectedItem("Select Assessments");
@@ -406,8 +409,8 @@ public class EvaluateStudent extends javax.swing.JFrame {
             writer.write("std Email:Obtained Marks");
             for (int i = 0; i < record.getStudentList().size(); i++) {
                 for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
-                    writer.write("\n"+record.getStudentList().get(i).getEmail()+":");
-                    writer.write(record.getStudentList().get(i).getStdOmList().get(j)+"");
+                    writer.write("\n" + record.getStudentList().get(i).getEmail() + ":");
+                    writer.write(record.getStudentList().get(i).getStdOmList().get(j) + "");
                 }
             }
             writer.close();

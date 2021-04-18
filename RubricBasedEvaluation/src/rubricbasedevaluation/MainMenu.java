@@ -32,9 +32,9 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel14.setText(count + "");
         jLabel30.setText(record.getStudentList().size() + "");
         jLabel25.setText(Student.getAssessmentList().size() + "");
-        count = 0;
+         count = 0;
         for (int i = 0; i < Student.getAssessmentList().size(); i++) {
-            if (Student.getAssessmentList().get(0).getActive() == true) {
+            if (Student.getAssessmentList().get(i).getActive() == true) {
                 count++;
             }
         }
@@ -74,7 +74,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel25.setText(Student.getAssessmentList().size() + "");
         count = 0;
         for (int i = 0; i < Student.getAssessmentList().size(); i++) {
-            if (Student.getAssessmentList().get(0).getActive() == true) {
+            if (Student.getAssessmentList().get(i).getActive() == true) {
                 count++;
             }
         }

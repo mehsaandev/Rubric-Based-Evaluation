@@ -239,18 +239,21 @@ public class StudentAssessmentResult extends javax.swing.JFrame {
             model.addColumn("Percentage");
             model.setNumRows(Student.getAssessmentList().size());
             for (int i = 0; i < record.getStudentList().get(record.searchStudent(student)).getAssessmentofStudent().size(); i++) {
-                int totalMarks = 0;
-                double obtainedMarks = 0;
-                model.setValueAt((i+1)+"", i, 0);
-                model.setValueAt("Assessment-"+(i+1), i, 1);
-                for (int k = 0; k < record.getStudentList().get(record.searchStudent(student)).getAssessmentofStudent().get(i).getQuestionsList().size(); k++) {
-                    totalMarks = totalMarks + Student.getAssessmentList().get(i).getQuestionsList().get(k).getTotalMarks();
-                    obtainedMarks = obtainedMarks + record.getStudentList().get(record.searchStudent(student)).getStdOmList().get(i);
+                if (record.getStudentList().get(record.searchStudent(student)).getAssessmentofStudent().get(i).getActive() == true) {
+                    int totalMarks = 0;
+                    double obtainedMarks = 0;
+                    model.setValueAt((i + 1) + "", i, 0);
+                    model.setValueAt("Assessment-" + (i + 1), i, 1);
+                    for (int k = 0; k < record.getStudentList().get(record.searchStudent(student)).getAssessmentofStudent().get(i).getQuestionsList().size(); k++) {
+                        totalMarks = totalMarks + Student.getAssessmentList().get(i).getQuestionsList().get(k).getTotalMarks();
+                        obtainedMarks = obtainedMarks + record.getStudentList().get(record.searchStudent(student)).getStdOmList().get(i);
+                    }
+                    model.setValueAt(totalMarks, i, 2);
+                    model.setValueAt(obtainedMarks, i, 3);
+                    double per = (Double.valueOf(obtainedMarks) / Double.valueOf(totalMarks)) * 100;
+                    model.setValueAt(per + "%", i, 4);
                 }
-                model.setValueAt(totalMarks, i, 2);
-                model.setValueAt(obtainedMarks, i, 3);
-                double per = (Double.valueOf(obtainedMarks)/Double.valueOf(totalMarks))*100;
-                model.setValueAt(per+"%", i, 4);
+
             }
             jTable1.setModel(model);
             jTabbedPane1.setSelectedIndex(1);

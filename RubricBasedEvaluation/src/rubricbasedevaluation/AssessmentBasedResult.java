@@ -32,22 +32,25 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
         int count = 0;
         for (int i = 0; i < record.getStudentList().size(); i++) {
             for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
-                int totalMarks = 0;
-                double obtainedMarks = 0;
-                for (int k = 0; k < record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().size(); k++) {
-                    totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
+                if (record.getStudentList().get(i).getAssessmentofStudent().get(j).getActive() == true) {
+                    int totalMarks = 0;
+                    double obtainedMarks = 0;
+                    for (int k = 0; k < record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().size(); k++) {
+                        totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
+                    }
+                    model.setValueAt((count + 1), count, 0);
+                    model.setValueAt(record.getStudentList().get(i).getRegNumber(), count, 1);
+                    String[] name = record.getStudentList().get(i).getName().split(";");
+                    model.setValueAt(name[0] + " " + name[1], count, 2);
+                    model.setValueAt("Assessment-" + (j + 1), count, 3);
+                    obtainedMarks = record.getStudentList().get(i).getStdOmList().get(j);
+                    model.setValueAt(totalMarks, count, 4);
+                    model.setValueAt(obtainedMarks, count, 5);
+                    double per = (obtainedMarks / Double.valueOf(totalMarks)) * 100;
+                    model.setValueAt(per + "%", count, 6);
+                    count++;
                 }
-                model.setValueAt((count + 1), count, 0);
-                model.setValueAt(record.getStudentList().get(i).getRegNumber(), count, 1);
-                String[] name = record.getStudentList().get(i).getName().split(";");
-                model.setValueAt(name[0]+" "+ name[1], count, 2);
-                model.setValueAt("Assessment-" + (j + 1), count, 3);
-                obtainedMarks = record.getStudentList().get(i).getStdOmList().get(j);
-                model.setValueAt(totalMarks, count, 4);
-                model.setValueAt(obtainedMarks, count, 5);
-                double per = (obtainedMarks/ Double.valueOf(totalMarks)) * 100;
-                model.setValueAt(per+"%", count, 6);
-                count++;
+
             }
         }
         jTable1.setFont(jLabel2.getFont());
