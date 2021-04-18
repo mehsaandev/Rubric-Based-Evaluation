@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -16,6 +18,16 @@ public class CLOBasedResult extends javax.swing.JFrame {
      */
     public CLOBasedResult() {
         initComponents();
+         EvaluationRecord record = EvaluationRecord.getInstance();
+        DefaultTableModel model = new DefaultTableModel();
+//        jLabel2.setVisible(false);
+        model.addColumn("Index");
+        model.addColumn("Student ID");
+        model.addColumn("Student Name");
+        model.addColumn("CLO");
+        model.addColumn("Obtained Marks in CLO");
+//        model.addColumn("Assessment O.Marks");
+        model.addColumn("Percentage Marks");
     }
 
     /**

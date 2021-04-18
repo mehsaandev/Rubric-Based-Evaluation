@@ -128,6 +128,7 @@ public class DeleteAssessment extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int index = -1;
+        EvaluationRecord record = EvaluationRecord.getInstance();
         try {
             index = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         } catch (Exception ex) {
@@ -135,6 +136,10 @@ public class DeleteAssessment extends javax.swing.JFrame {
         }
         if (index != -1) {
             Student.deleteAssessment(Student.getAssessmentList().get(index-1));
+            for(int i=0;i<record.getStudentList().size();i++)
+            {
+                record.getStudentList().get(i).getStdOmList().remove(Student.getAssessmentList().get(index-1));
+            }
             JOptionPane.showMessageDialog(null, "Assessment has been removed Successfully");
             MainMenu mainMenu = new MainMenu(1);
             mainMenu.setVisible(true);

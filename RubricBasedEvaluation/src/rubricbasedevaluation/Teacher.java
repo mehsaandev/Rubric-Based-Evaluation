@@ -21,18 +21,35 @@ public class Teacher extends SystemBody {
         this.email = email;
         this.username = username;
         this.password = password;
-        
+
+    }
+
+    private Teacher() {
+        this.name = "NA";
+        this.cnic = "NA";
+        this.email = "NA";
+        this.username = "NA";
+        this.password = "NA";
+
     }
 
     public static Teacher getInstance(String name, String CNIC, String email, String username, String password) {
-        if (teacher == null) {
+        if (teacher == null || teacher.getUsername().equals("NA")) {
             teacher = new Teacher(name, CNIC, email, username, password);
             return teacher;
         }
         return teacher;
     }
-    public static Teacher getTeacher()
-    {
+
+    public static Teacher getInstance() {
+        if (teacher == null) {
+            teacher = new Teacher();
+            return teacher;
+        }
+        return teacher;
+    }
+
+    public static Teacher getTeacher() {
         return teacher;
     }
 
@@ -56,7 +73,7 @@ public class Teacher extends SystemBody {
 
     public boolean checkLogin(String username, String password) {
         if ((this.username.equals(username) || this.email.equals(username)) && (this.password.equals(password))) {
-            
+
             return true;
         }
         return false;

@@ -5,6 +5,8 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
@@ -16,6 +18,50 @@ public class OverallResultSummary extends javax.swing.JFrame {
      */
     public OverallResultSummary() {
         initComponents();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        DefaultTableModel model = new DefaultTableModel();
+        jLabel2.setVisible(false);
+        model.addColumn("Index");
+        model.addColumn("Student ID");
+        model.addColumn("Student Name");
+        model.addColumn("Assessment Failed");
+        model.addColumn("Assessment T.Marks");
+        model.addColumn("Assessment O.Marks");
+        model.addColumn("Percentage Marks");
+        model.addColumn("Status");
+        model.setNumRows(6);
+        int count = 0;
+        for (int i = 0; i < record.getStudentList().size(); i++) {
+            for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
+                int totalMarks = 0;
+                for (int k = 0; k < Student.getAssessmentList().get(j).getQuestionsList().size(); k++) {
+                    totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
+                }
+                String status = "Pass";
+                if (record.getStudentList().get(i).getStdOmList().get(j) < (totalMarks / 2)) {
+
+                    status = "Fail";
+                }
+
+                double obtainedMarks = 0;
+                model.setValueAt((count + 1), count, 0);
+                model.setValueAt(record.getStudentList().get(i).getRegNumber(), count, 1);
+                String[] name = record.getStudentList().get(i).getName().split(";");
+                model.setValueAt(name[0] + " " + name[1], count, 2);
+                model.setValueAt("Assessment-" + (j + 1), count, 3);
+                obtainedMarks = record.getStudentList().get(i).getStdOmList().get(j);
+                model.setValueAt(totalMarks, count, 4);
+                model.setValueAt(obtainedMarks, count, 5);
+                double per = (obtainedMarks / Double.valueOf(totalMarks)) * 100;
+                model.setValueAt(per + "%", count, 6);
+                model.setValueAt(status, count, 7);
+                count++;
+
+            }
+        }
+        jTable1.setFont(jLabel2.getFont());
+        jTable1.setModel(model);
+        jTable1.setEnabled(false);
     }
 
     /**
@@ -32,6 +78,7 @@ public class OverallResultSummary extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ResultSummary");
@@ -64,6 +111,9 @@ public class OverallResultSummary extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,7 +124,9 @@ public class OverallResultSummary extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(375, 375, 375))
+                        .addGap(240, 240, 240)
+                        .addComponent(jLabel2)
+                        .addGap(180, 180, 180))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(340, 340, 340))))
@@ -84,11 +136,17 @@ public class OverallResultSummary extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(43, 43, 43))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,6 +208,7 @@ public class OverallResultSummary extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

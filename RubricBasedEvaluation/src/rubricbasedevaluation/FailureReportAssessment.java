@@ -5,16 +5,58 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ahsan
  */
 public class FailureReportAssessment extends javax.swing.JFrame {
+
     /**
      * Creates new form FailureReportAssessment
      */
     public FailureReportAssessment() {
         initComponents();
+        EvaluationRecord record = EvaluationRecord.getInstance();
+        DefaultTableModel model = new DefaultTableModel();
+        jLabel2.setVisible(false);
+        model.addColumn("Index");
+        model.addColumn("Student ID");
+        model.addColumn("Student Name");
+        model.addColumn("Assessment Failed");
+        model.addColumn("Assessment T.Marks");
+        model.addColumn("Assessment O.Marks");
+        model.addColumn("Percentage Marks");
+        model.setNumRows(6);
+        int count = 0;
+        for (int i = 0; i < record.getStudentList().size(); i++) {
+            for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
+                int totalMarks = 0;
+                for (int k = 0; k < Student.getAssessmentList().get(j).getQuestionsList().size(); k++) {
+                    totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
+                }
+                if (record.getStudentList().get(i).getStdOmList().get(j) < (totalMarks / 2)) {
+
+                    double obtainedMarks = 0;
+                    model.setValueAt((count + 1), count, 0);
+                    model.setValueAt(record.getStudentList().get(i).getRegNumber(), count, 1);
+                    String[] name = record.getStudentList().get(i).getName().split(";");
+                    model.setValueAt(name[0] + " " + name[1], count, 2);
+                    model.setValueAt("Assessment-" + (j + 1), count, 3);
+                    obtainedMarks = record.getStudentList().get(i).getStdOmList().get(j);
+                    model.setValueAt(totalMarks, count, 4);
+                    model.setValueAt(obtainedMarks, count, 5);
+                    double per = (obtainedMarks / Double.valueOf(totalMarks)) * 100;
+                    model.setValueAt(per + "%", count, 6);
+                    count++;
+                }
+
+            }
+        }
+        jTable1.setFont(jLabel2.getFont());
+        jTable1.setModel(model);
+        jTable1.setEnabled(false);
     }
 
     /**
@@ -31,6 +73,7 @@ public class FailureReportAssessment extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Assessment based Failure Report");
@@ -63,6 +106,9 @@ public class FailureReportAssessment extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -75,7 +121,9 @@ public class FailureReportAssessment extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(375, 375, 375))
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel2)
+                        .addGap(177, 177, 177))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(212, 212, 212))))
@@ -88,8 +136,13 @@ public class FailureReportAssessment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(26, 26, 26))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,6 +204,7 @@ public class FailureReportAssessment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

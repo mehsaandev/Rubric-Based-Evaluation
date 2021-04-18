@@ -20,6 +20,7 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
         initComponents();
         EvaluationRecord record = EvaluationRecord.getInstance();
         DefaultTableModel model = new DefaultTableModel();
+        jLabel2.setVisible(false);
         model.addColumn("Index");
         model.addColumn("Student ID");
         model.addColumn("Student Name");
@@ -29,25 +30,29 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
         model.addColumn("Percentage Marks");
         model.setNumRows(6);
         int count = 0;
-        for(int i=0;i<record.getStudentList().size();i++)
-        {
-            for(int j=0;j<record.getStudentList().get(i).getAssessmentofStudent().size();j++)
-            {
+        for (int i = 0; i < record.getStudentList().size(); i++) {
+            for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
                 int totalMarks = 0;
                 double obtainedMarks = 0;
-                for(int k=0;k<record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().size();k++)
-                {
+                for (int k = 0; k < record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().size(); k++) {
                     totalMarks = totalMarks + Student.getAssessmentList().get(j).getQuestionsList().get(k).getTotalMarks();
-                    obtainedMarks = obtainedMarks + record.getStudentList().get(i).getAssessmentofStudent().get(j).getQuestionsList().get(k).getObtainedMarks();
                 }
+                model.setValueAt((count + 1), count, 0);
+                model.setValueAt(record.getStudentList().get(i).getRegNumber(), count, 1);
+                String[] name = record.getStudentList().get(i).getName().split(";");
+                model.setValueAt(name[0]+" "+ name[1], count, 2);
+                model.setValueAt("Assessment-" + (j + 1), count, 3);
+                obtainedMarks = record.getStudentList().get(i).getStdOmList().get(j);
                 model.setValueAt(totalMarks, count, 4);
                 model.setValueAt(obtainedMarks, count, 5);
+                double per = (obtainedMarks/ Double.valueOf(totalMarks)) * 100;
+                model.setValueAt(per+"%", count, 6);
                 count++;
             }
         }
-        jTable1.setFont(jButton1.getFont());
+        jTable1.setFont(jLabel2.getFont());
         jTable1.setModel(model);
-
+        jTable1.setEnabled(false);
     }
 
     /**
@@ -64,6 +69,7 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Assessment based Result");
@@ -96,6 +102,9 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,7 +116,9 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375))
+                .addGap(116, 116, 116)
+                .addComponent(jLabel2)
+                .addGap(218, 218, 218))
             .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,11 +126,17 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(33, 33, 33))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,6 +198,7 @@ public class AssessmentBasedResult extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

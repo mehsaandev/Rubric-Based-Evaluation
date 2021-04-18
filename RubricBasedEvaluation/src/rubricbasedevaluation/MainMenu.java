@@ -38,8 +38,23 @@ public class MainMenu extends javax.swing.JFrame {
                 count++;
             }
         }
+        boolean flag = false;
+        for (int i = 0; i < record.getStudentList().size(); i++) {
+            if (record.getStudentList().get(i).getStdOmList().size() == 0) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag == true) {
+            for (int i = 0; i < record.getStudentList().size(); i++) {
+                for (int k = 0; k < Student.getAssessmentList().size(); k++) {
+                    record.getStudentList().get(i).addStdOM(0);
+                }
+            }
 
-        jLabel22.setText(count+"");
+        }
+
+        jLabel22.setText(count + "");
     }
 
     public MainMenu(int indexOfPane) {
@@ -64,7 +79,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
 
-        jLabel22.setText(count+"");
+        jLabel22.setText(count + "");
     }
 
     /**

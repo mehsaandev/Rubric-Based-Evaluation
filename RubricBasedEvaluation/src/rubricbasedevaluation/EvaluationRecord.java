@@ -26,6 +26,53 @@ public class EvaluationRecord {
         loadCLO();
     }
 
+    private static void loadStdOM() {
+        try {
+            File load = new File("StudentOM.txt");
+            Scanner om = new Scanner(load);
+            om.nextLine();
+            System.out.println("std size is : "+evaluationRecord.getStudentList().size());
+            for(int i=0;i<evaluationRecord.getStudentList().size();i++)
+            {
+                 System.out.println("std list is :"+i+" "+ evaluationRecord.getStudentList().get(i).getEmail());
+            }
+                
+            while (om.hasNextLine()) {
+                int count = 0;
+                String[] arr = om.nextLine().split(":");
+                Student student = new Student();
+                student.setEmail(arr[0]);
+                System.out.println("name std"+ arr[0]);
+//                for (int k = 0; k < evaluationRecord.getStudentList().size(); k++) {
+//                    for (int i = 0; i < Student.getAssessmentList().size(); i++) {
+//                        evaluationRecord.getStudentList().get(i).addStdOM(0);
+//                    }
+                    evaluationRecord.getStudentList().get(evaluationRecord.searchStudent(student)).getStdOmList().add(Double.parseDouble(arr[1]));
+//                }
+
+            }
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Student Obtained Marks data is not loaded, File not Found");
+        }
+    }
+
+    private static void loadTeacher() {
+        try {
+            File load = new File("Teacher.txt");
+            Scanner readTeacher = new Scanner(load);
+            readTeacher.nextLine();
+            if (readTeacher.hasNextLine()) {
+                String getTeacher = readTeacher.nextLine();
+                String[] arr = getTeacher.split(";");
+                String[] splitName = arr[0].split(":");
+                Teacher.getInstance(arr[0], arr[2], arr[1], arr[3], arr[4]);
+            }
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Teacher data is not loaded, File not Found");
+        }
+    }
+
     private static void loadRubricLevels() {
         try {
             File rubricLevelReader = new File("RubricLevels.txt");
@@ -33,14 +80,14 @@ public class EvaluationRecord {
             RubricLevels rubricLevel = new RubricLevels();
             getLevel.nextLine();
             rubricLevel.setRubricLevels(Integer.parseInt(getLevel.nextLine()));
-            ArrayList<String> listRubric = new  ArrayList<String>();
+            ArrayList<String> listRubric = new ArrayList<String>();
             while (getLevel.hasNextLine()) {
                 listRubric.add(getLevel.nextLine());
             }
             rubricLevel.setLevelList(listRubric);
             evaluationRecord.setRubricLevel(rubricLevel);
         } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Rubrics Levels data is not loaded, File not Found");
+            JOptionPane.showMessageDialog(null, "Rubrics Levels data is not loaded, File not Found");
         }
 
     }
@@ -62,7 +109,7 @@ public class EvaluationRecord {
                     student.setName(getStd[3]);
                     studentList.add(student);
                 } else {
-                    String lost = studentReader.nextLine();
+                    studentReader.nextLine();
                 }
                 count++;
             }
@@ -280,8 +327,10 @@ public class EvaluationRecord {
             loadRubric();
             loadAssessment();
             loadQuestions();
+            loadTeacher();
             evaluationRecord.setStudentList(loadStudent());
             loadRubricLevels();
+            loadStdOM();
             return evaluationRecord;
         }
         return evaluationRecord;
@@ -293,8 +342,17 @@ public class EvaluationRecord {
     public static void main(String[] args) {
         // TODO code application logic here
         EvaluationRecord evaluationRecord = EvaluationRecord.getInstance();
-        RegisterTeacher loginForm = new RegisterTeacher();
-        loginForm.setVisible(true);
+        Teacher teacher = Teacher.getInstance();
+        System.out.println(teacher.getUsername());
+        if (teacher.getUsername().equals("NA")) {
+            RegisterTeacher loginForm = new RegisterTeacher();
+            loginForm.setVisible(true);
+        } else {
+            LoginForm loginForm = new LoginForm();
+            loginForm.setVisible(true);
+        }
+        ;
+
     }
 
 }

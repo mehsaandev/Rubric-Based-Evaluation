@@ -5,6 +5,10 @@
  */
 package rubricbasedevaluation;
 
+import javax.swing.JOptionPane;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Ahsan
@@ -90,8 +94,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         jLabel3.setText("_________________________________________________________________________________________________________________________");
 
         jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Muhammad");
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -99,8 +101,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("ehsaan2611@gmail.com");
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField2KeyReleased(evt);
@@ -108,8 +108,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("Ehsaan");
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
@@ -117,8 +115,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setText("ehsaan2611");
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField4KeyReleased(evt);
@@ -126,8 +122,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField5.setText("3520258495935");
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
@@ -135,8 +129,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField6.setText("2611Ysolda!");
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField6KeyReleased(evt);
@@ -144,8 +136,6 @@ public class RegisterTeacher extends javax.swing.JFrame {
         });
 
         jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField7.setText("2611Ysolda!");
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField7KeyReleased(evt);
@@ -356,19 +346,19 @@ public class RegisterTeacher extends javax.swing.JFrame {
                                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel26))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel27))))
-                        .addGap(73, 73, 73))
+                        .addGap(63, 63, 63)
+                        .addComponent(jButton1)
+                        .addGap(21, 21, 21))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addComponent(jButton1)
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,18 +378,39 @@ public class RegisterTeacher extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (Validators.validateCNIC(jTextField5.getText()) && Validators.validateName(jTextField1.getText() + " " + jTextField3.getText()) && Validators.validateEmail(jTextField2.getText()) && Validators.validateUsername(jTextField4.getText()) && Validators.validatePassword(jTextField6.getText()) && jTextField6.getText().equals(jTextField7.getText())) {
-            String name = jTextField1.getText() + " " + jTextField3.getText();
+            String name = jTextField1.getText() + ":" + jTextField3.getText();
             String CNIC = jTextField5.getText();
             String email = jTextField2.getText();
             String username = jTextField4.getText();
             String password = jTextField6.getText();
-            Teacher.getInstance(name, CNIC, email, username, password);
+             Teacher teacher = Teacher.getInstance(name, CNIC, email, username, password);
+            JOptionPane.showMessageDialog(null, "Registration Completed");
             LoginForm loginForm = new LoginForm();
+            saveTeacher();
             loginForm.setVisible(true);
             this.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Data");
+        }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void saveTeacher() {
+        try {
+            Teacher teacher = Teacher.getTeacher();
+            FileWriter writer = new FileWriter("Teacher.txt");
+            writer.write("Name;email;cnic;username;password\n");
+            writer.write(teacher.getName() + ";");
+            writer.write(teacher.getEmail() + ";");
+            writer.write(teacher.getCNIC() + ";");
+            writer.write(teacher.getUsername() + ";");
+            writer.write(teacher.getPassword());
+            writer.close();
+        } catch (IOException ex) {
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
         // TODO add your handling code here:

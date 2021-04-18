@@ -15,6 +15,7 @@ public class Student extends SystemBody {
 
     private String regNumber;
     private static ArrayList<Assessments> assessmentsList = new ArrayList<Assessments>();
+    private ArrayList<Double> studentOM = new ArrayList<Double>();
 
     /**
      * Set value of fRegistration Number
@@ -29,6 +30,19 @@ public class Student extends SystemBody {
      *
      * @return
      */
+    public void addStdOM(double OM)
+    {
+        this.studentOM.add(OM);
+    }
+    public void setStdOmList(ArrayList<Double> list)
+    {
+        this.studentOM = list;
+    }
+    
+    public ArrayList<Double> getStdOmList()
+    {
+        return this.studentOM;
+    }
     public String getRegNumber() {
         return this.regNumber;
     }
@@ -65,7 +79,8 @@ public class Student extends SystemBody {
     public static ArrayList<Assessments> getAssessmentList() {
         return assessmentsList;
     }
-    public  ArrayList<Assessments> getAssessmentofStudent(){
+
+    public ArrayList<Assessments> getAssessmentofStudent() {
         return assessmentsList;
     }
 

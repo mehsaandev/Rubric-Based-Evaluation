@@ -1,0 +1,2 @@
+Name;email;cnic;username;password
+Muhammad:Ehsaan;ehsaan2611@gmail.com;3520258495935;ehsaan2611;2611Ysolda!

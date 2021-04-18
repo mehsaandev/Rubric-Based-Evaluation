@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultCellEditor;
 import java.awt.Font;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -372,30 +374,48 @@ public class EvaluateStudent extends javax.swing.JFrame {
         }
 
         if (marks != -1) {
+            double sum = 0;
+            for (int i = 0; i < record.getStudentList().size(); i++) {
+                for (int j = 0; j < Student.getAssessmentList().size(); j++) {
+                    record.getStudentList().get(i).addStdOM(0.0);
+                }
+            }
+
             for (int i = 0; i < Student.getAssessmentList().get(assessIndex - 1).getQuestionsList().size(); i++) {
-                System.out.println("OM 0 before : " + record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
-                System.out.println("OM 1 before" + record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
                 String getRubric = jTable2.getModel().getValueAt(i, 0).toString();
                 String[] indexGet = getRubric.split(" ");
                 marks = Integer.parseInt(indexGet[1]);
                 Double marksValue = (Double.valueOf(marks) / record.getRubricLevel().getRubricLevels()) * Student.getAssessmentList().get(assessIndex - 1).getQuestionsList().get(i).getTotalMarks();
-                record.getStudentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).setObtainedMarks(marksValue);
-                System.out.println("OM 0 after "+record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
-                System.out.println("OM 1 after"+record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
-                record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).setObtainedMarks(10.0);
-                System.out.println("OM 1 changed "+record.getStudentList().get(0).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
-                System.out.println("OM 1 changed"+record.getStudentList().get(1).getAssessmentofStudent().get(assessIndex - 1).getQuestionsList().get(i).getObtainedMarks());
+                sum = sum + marksValue;
 
             }
-
+            record.getStudentList().get(Integer.parseInt(jComboBox1.getSelectedItem().toString()) - 1).getStdOmList().set((assessIndex - 1), sum);
             JOptionPane.showMessageDialog(null, "Student is Evaluated");
             MainMenu mainMenu = new MainMenu(2);
+            saveObtainedMarksData();
             mainMenu.setVisible(true);
             this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Evaluate All Questions");
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+    private void saveObtainedMarksData() {
+        try {
+            EvaluationRecord record = EvaluationRecord.getInstance();
+            FileWriter writer = new FileWriter("StudentOM.txt");
+            writer.write("std Email:Obtained Marks");
+            for (int i = 0; i < record.getStudentList().size(); i++) {
+                for (int j = 0; j < record.getStudentList().get(i).getAssessmentofStudent().size(); j++) {
+                    writer.write("\n"+record.getStudentList().get(i).getEmail()+":");
+                    writer.write(record.getStudentList().get(i).getStdOmList().get(j)+"");
+                }
+            }
+            writer.close();
+        } catch (IOException ex) {
+
+        }
+
+    }
 
     /**
      * @param args the command line arguments
